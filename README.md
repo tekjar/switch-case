@@ -5,6 +5,8 @@
 - [ ] smart switch board controllable throuhg mobile phone and home automation hubs
 - [ ] REST APIs
 - [ ] save state changes
+- [ ] proximity awareness
+- [ ] hackable
 
 
 
@@ -22,17 +24,22 @@
 2. short range. Can be increased if devkits support MESH
 3. very good range due to mesh
 
-#####C. HARDWARE AVAILABILITY
+#####C. PROXIMITY AWARENESS
+1. No. Need to add some BLE central devices to home
+2. Yes
+3. No. Need to add some BLE central devices to home
+
+#####D. HARDWARE AVAILABILITY
 1. Tons of development boards available
 2. Need devkits with BLE central support for integrating BLE proximity feature into switch board
 3. Not present in any modern cellphones. Need to route through a hub with zigbee (can rule out zigbee due to this reason)
 
-#####D. SOFTWARE EFFORT
+#####E. SOFTWARE EFFORT
 1. Super easy due to IP stack
 2. -
 3. -
 
-#####E. COMMUNITY SUPPORT
+#####F. COMMUNITY SUPPORT
 1. Excellent community support
 2. Low community support
 3. Low community support
