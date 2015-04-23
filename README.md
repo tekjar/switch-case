@@ -15,7 +15,7 @@
 1 -> WIFI, 2 -> BLE, 3 -> ZIGBEE
 
 #####A. CONNECTION
-1. Requires Gateway. So, phone should be connected to netork
+1. Requires Gateway. So, phone should be connected to network
 2. peer to peer
 3. peer to peer
 
