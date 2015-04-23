@@ -2,11 +2,12 @@
 
 ###PROJECT GOALS
 
-- [ ] smart switch board controllable throuhg mobile phone and home automation hubs
+- [ ] Smart switch board controllable throuhg mobile phone and home automation hubs
 - [ ] REST APIs
-- [ ] save state changes
-- [ ] proximity awareness
-- [ ] hackable
+- [ ] Save state changes
+- [ ] Proximity awareness
+- [ ] Hackable
+- [ ] Ambient light sensor
 
 
 
@@ -16,13 +17,13 @@
 
 #####A. CONNECTION
 1. Requires Gateway. So, phone should be connected to network
-2. peer to peer
-3. peer to peer
+2. Peer to peer
+3. Peer to peer
 
 #####B. SIGNAL RANGE
 1. Better range which can be extended with repeaters
-2. short range. Can be increased if devkits support MESH
-3. very good range due to mesh
+2. Short range. Can be increased if devkits support MESH
+3. Very good range due to mesh
 
 #####C. PROXIMITY AWARENESS
 1. No. Need to add some BLE central devices to home
