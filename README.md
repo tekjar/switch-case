@@ -7,7 +7,7 @@
 - [ ] Save state changes
 - [ ] Proximity awareness
 - [ ] Hackable
-- [ ] Ambient light sensor
+- [ ] Beautiful, Led backlit,  Ambient light sensor + IR transreceiver with learning mode(for selected models)
 
 
 
