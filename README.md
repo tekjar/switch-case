@@ -9,7 +9,9 @@
 - [ ] Hackable
 - [ ] Beautiful, Led backlit,  Ambient light sensor + IR transreceiver with learning mode (for selected models)
 
+### SOFTWARE FEATURES
 
+- [ ] Manual control, Mobile Control, Contextual, Security
 
 ###WIFI vs BLE vs ZIGBEE
 
