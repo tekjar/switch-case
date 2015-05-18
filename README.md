@@ -6,6 +6,7 @@
 - [ ] REST APIs
 - [ ] Save state changes
 - [ ] Proximity awareness
+- [ ] Power consumption
 - [ ] Hackable
 - [ ] Beautiful, Led backlit,  Ambient light sensor + IR transreceiver with learning mode (for selected models)
 
