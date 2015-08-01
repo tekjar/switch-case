@@ -1,0 +1,14 @@
+[switchboard]
+instance = 2               # instance represents your swithc number. Switcboard should return error incase of wrong instance value
+method = "set"             # possible values --> 1. set 2. get
+attribute = "status"       # possible values --> 1. status (to control on/off) 2. slider (to control brightness or speed)
+value = 100
+
+
+# NOTES:
+# ------
+# 1. Requests received on different instances should be threaded while on the same instance should be in queue
+# 2. Switch board should return success or failure status json
+# 3. Timeout is necessary if a request is taking long time
+# 4. Add timer functionality after the communication protocal is stabilized
+# 5. Anyway to compress this ?

@@ -1,9 +1,8 @@
+# This will be retured by switchboard when get '*' is requested
+
 [switchboard]
 ip = "x.x.x.x"
-method = "get" # get and set possible
-num = 2
-total = 4
-
+method = "set"       # Possible values --> set/get. What if you don't want to set everything. May be -ve values ?
 [switchboard.1]
 status = 0
 slider = 20
