@@ -1,8 +1,9 @@
 [switchboard]
-instance = 2               # instance represents your swithc number. Switcboard should return error incase of wrong instance value
-method = "set"             # possible values --> 1. set 2. get
-attribute = "status"       # possible values --> 1. status (to control on/off) 2. slider (to control brightness or speed)
+[2]                      # instance represents your swithc number. Switcboard should return error incase of wrong instance value
+mode = "set"             # possible values --> 1. set 2. get
 value = 100
+ack = "ok"              # while sending response to server this field is going to be updated accordingly
+                        # possible values -->   1. OK, 2. ERROR(is going to change in future, in according with error implementations)
 
 
 # NOTES:
@@ -12,3 +13,8 @@ value = 100
 # 3. Timeout is necessary if a request is taking long time
 # 4. Add timer functionality after the communication protocal is stabilized
 # 5. Anyway to compress this ?
+#    a) Second level (in this case [2]) represents instance/Switch number
+#    b) In case of 'set' mode, 'value' becomes the corresponding Switch/Regulator output state
+#       In case of 'get' mode, 'value' becomes the current state of the corresponding Switch/Regulator
+#   c) Every instace is going to contain the 'ack' field. because, it will be useful in multi instance case.
+#      While sending response this value is going to be updated by this module

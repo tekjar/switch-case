@@ -1,8 +1,9 @@
 {
     "switchboard": {
-        "attribute": "status", 
-        "instance": 2, 
-        "method": "set", 
-        "value": 100
+        "1": {
+            "mode": "set",
+            "value": 0,
+            "ack": "ok"
+        }
     }
 }
