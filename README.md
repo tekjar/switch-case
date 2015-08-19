@@ -48,5 +48,25 @@
 2. Low community support
 3. Low community support
 
+#####G. CLOUD SERVER 
+
+On and off of electrical devices is not the goal.
+Collecting and analyzing data  providing valuable insights and creating actions is the key .
+
+For such task we need a pc in internet which can 1)talk to our device gather data . 
+2)act as the backend for apps by providing apus to query and give data as response .
+3) have excellent analytics .
+4) extendable: it collects data . but the developer should be able to write code to draw insights and act on them .
+
+How to solve this ?
+
+Ad our primary focus is not tocreate a new cliud software . we use existing ones 
+
+1) xively 
+2) sparks now particle are few examples .
+
+Even IBM is providing blue mix . but its more like an enterprise solution.
+
+Will update on how these are evolved .
 
 
