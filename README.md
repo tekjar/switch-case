@@ -54,7 +54,7 @@ On and off of electrical devices is not the goal.
 Collecting and analyzing data  providing valuable insights and creating actions is the key .
 
 For such task we need a pc in internet which can 1)talk to our device gather data . 
-2)act as the backend for apps by providing apus to query and give data as response .
+2)act as the backend for apps by providing apis to query and give data as response .
 3) have excellent analytics .
 4) extendable: it collects data . but the developer should be able to write code to draw insights and act on them .
 
