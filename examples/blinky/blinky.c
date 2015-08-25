@@ -4,53 +4,57 @@
 #include "os_type.h"
 #include "user_config.h"
 
-#define user_procTaskPrio        0
-#define user_procTaskQueueLen    1
-os_event_t    user_procTaskQueue[user_procTaskQueueLen];
-static void user_procTask(os_event_t *events);
+#define led 6
+#define LOW 0
+#define HIGH 1
+
 
 static volatile os_timer_t some_timer;
 
 
-void some_timerfunc(void *arg)
+void some_timer_func(void *arg) // in Arduino this is loop the main loop
 {
     //Do blinky stuff
-    if (GPIO_REG_READ(GPIO_OUT_ADDRESS) & BIT1)
+	if GPIO_INPUT_GET(led)  
     {
-        //Set GPIO1 to LOW
-        gpio_output_set(0, BIT1, BIT1, 0);
+        //Set led to LOW
+		GPIO_OUTPUT_SET(led, LOW); // in Arduino this is digitalWrite(led, LOW)
+		os_printf("ON \n\r");      // In Arduino this is Serial.println("ON");
+
     }
     else
     {
-        //Set GPIO1 to HIGH
-        gpio_output_set(BIT1, 0, BIT1, 0);
+        //Set led to HIGH
+		GPIO_OUTPUT_SET(led, HIGH); // in Arduino this is digitalWrite(led, HIGH) 
+		os_printf("OFF \n\r");      // In Arduino this is Serial.println("OFF");
+
     }
 }
 
-//Do nothing function
-static void ICACHE_FLASH_ATTR
-user_procTask(os_event_t *events)
-{
-    os_delay_us(10);
-}
 
 //Init function 
-void ICACHE_FLASH_ATTR user_init()
+void ICACHE_FLASH_ATTR
+user_init()  // in arduino this is setup()
 {
     // Initialize the GPIO subsystem.
     gpio_init();
+    //Set GPIO2 to output mode, and to low
+    GPIO_OUTPUT_SET(led, HIGH); //  Compared with arduino pinMode(led, OUTPUT);
+	
+    // Initialize UART0
+	uart_div_modify(0, UART_CLK_FREQ / 115200);  // In Arduino this is Serial.begin(115200);
 
-    //Set GPIO1 to output mode
-    PIN_FUNC_SELECT(PERIPHS_IO_MUX_U0TXD_U, FUNC_GPIO1);
+	os_printf("Hello World, Blinking\n\r"); // In Arduino this is Serial.println("Hello World, Blinking");
 
-    //Set GPIO1 low
-    gpio_output_set(0, BIT1, BIT1, 0);
-
+	// In Arduino there is 1 loop, Under ESP8266 you can have several loops next to each other. 
+	// To setup a loop use the 3 timer commands below. This will start the function called some_timer
+	// some_timer will be repeated every second.
+	
     //Disarm timer
     os_timer_disarm(&some_timer);
 
     //Setup timer
-    os_timer_setfn(&some_timer, (os_timer_func_t *)some_timerfunc, NULL);
+    os_timer_setfn(&some_timer, (os_timer_func_t *)some_timer_func, NULL);
 
     //Arm the timer
     //&some_timer is the pointer
@@ -58,6 +62,4 @@ void ICACHE_FLASH_ATTR user_init()
     //0 for once and 1 for repeating
     os_timer_arm(&some_timer, 1000, 1);
     
-    //Start os task
-    system_os_task(user_procTask, user_procTaskPrio,user_procTaskQueue, user_procTaskQueueLen);
 }

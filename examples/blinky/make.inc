@@ -20,6 +20,7 @@ CFLAGS := -I. -I$(ESP_INCLUDE) -mlongcalls
 LDLIBS := -L$(ESP_LIBS) -nostdlib -Wl,--start-group -lmain -lnet80211 -lwpa -llwip -lpp -lphy -Wl,--end-group -lgcc
 LDFLAGS := -T/home/ravitejareddy/Desktop/espressif/esp-open-sdk/esp_iot_sdk_v1.3.0/ld/eagle.app.v6.ld
 
+
 ifeq ($(CC),cc)
 CC := xtensa-lx106-elf-gcc
 endif
@@ -35,8 +36,10 @@ all: $(libs) elf
 elf: $(bins)
 	esptool.py elf2image $^
 
+$(info ###### $(ESP_TOOLS))
+
 flash:
-	$(foreach bin, $(bins), esptool.py write_flash 0 $(bin)-0x00000.bin 0x40000 $(bin)-0x40000.bin)
+	$(foreach bin, $(bins), '$(ESP_TOOLS)'/esptool.py write_flash 0 $(bin)-0x00000.bin 0x40000 $(bin)-0x40000.bin)
 
 
 # Generate Object files (.o)
