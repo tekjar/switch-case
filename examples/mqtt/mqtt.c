@@ -9,7 +9,7 @@
 #include "user_interface.h"
 #include "mem.h"
 
-#define RED 1
+#define GREEN 1
 
 #ifdef RED
 #define pin GPIO_ID_PIN(12)
@@ -52,7 +52,7 @@ void some_timer_func(void *arg) // in Arduino this is loop the main loop
 	}
 }
 
-
+#if 0
 MQTT_Client mqttClient;
 
 void wifiConnectCb(uint8_t status)
@@ -106,26 +106,18 @@ void mqttDataCb(uint32_t *args, const char* topic, uint32_t topic_len, const cha
 	os_free(topicBuf);
 	os_free(dataBuf);
 }
-
+#endif
 
 void ICACHE_FLASH_ATTR user_init()
 {
 	gpio_init();
-	os_delay_us(1000000);
-	uart_div_modify(0, UART_CLK_FREQ / 115200);
-	os_delay_us(3000000);
 	PIN_FUNC_SELECT(pin_mux,pin_func);
 	GPIO_OUTPUT_SET(pin, 1);
-	os_printf("Hello World, Blinking\n\r"); // In Arduino this is Serial.println("Hello World, Blinking");
-	os_delay_us(1000000);
-	os_printf("Hello World, Blinking\n\r"); // In Arduino this is Serial.println("Hello World, Blinking");
-	os_delay_us(1000000);
-	os_printf("Hello World, Blinking\n\r"); // In Arduino this is Serial.println("Hello World, Blinking");
-	os_delay_us(1000000);
+	uart_div_modify(0, UART_CLK_FREQ / 115200);
 	os_printf("Hello World, Blinking\n\r"); // In Arduino this is Serial.println("Hello World, Blinking");
 	os_timer_disarm(&some_timer);
 	os_timer_setfn(&some_timer, (os_timer_func_t *)some_timer_func, NULL);
-	os_timer_arm(&some_timer, 5000, 1);
+	os_timer_arm(&some_timer, 1000, 1);
 #if 0
 	CFG_Load();
 	os_printf("Hello World MQTT\n\r");
@@ -143,6 +135,6 @@ void ICACHE_FLASH_ATTR user_init()
 	MQTT_OnData(&mqttClient, mqttDataCb);
 
 	WIFI_Connect(sysCfg.sta_ssid, sysCfg.sta_pwd, wifiConnectCb);
-#endif
 	os_printf("\r\nSystem started ...\r\n");
+#endif
 }
