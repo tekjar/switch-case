@@ -17,7 +17,8 @@
 #
 
 CFLAGS := -I. -I$(ESP_INCLUDE) -mlongcalls
-LDLIBS := -L$(ESP_LIBS) -nostdlib -Wl,--start-group -lmain -lnet80211 -lwpa -llwip -lpp -lphy -Wl,--end-group -lgcc
+LDLIBS := -L$(ESP_LIBS) -nostdlib -Wl,--start-group -lmain -lnet80211 -lwpa -llwip -lpp -lphy -lssl -Wl,--end-group -lgcc
+#-lmqtt
 LDFLAGS := -T$(ESP_OPEN_SDK)/esp_iot_sdk_v1.3.0/ld/eagle.app.v6.ld
 
 
