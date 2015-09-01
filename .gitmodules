@@ -1,3 +1,9 @@
 [submodule "esp-open-sdk"]
 	path = esp-open-sdk
 	url = https://github.com/pfalcon/esp-open-sdk.git
+[submodule "Sming"]
+	path = Sming
+	url = https://github.com/anakod/Sming.git
+[submodule "spiffy"]
+	path = spiffy
+	url = https://github.com/alonewolfx2/spiffy.git
