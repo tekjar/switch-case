@@ -1,11 +1,17 @@
 #include <user_config.h>
 #include <SmingCore/SmingCore.h>
+#include <switches.h>
 
 // If you want, you can define WiFi settings globally in Eclipse Environment Variables
 #ifndef WIFI_SSID
 #define WIFI_SSID "OpenWrt" // Put you SSID and Password here
 #define WIFI_PWD "abc@12345"
 #endif
+
+
+#define R 12
+#define G 13
+#define B 14
 
 // Forward declarations
 void startMqttClient();
@@ -17,6 +23,31 @@ Timer procTimer;
 // For quickly check you can use: http://www.hivemq.com/demos/websocket-client/ (Connection= test.mosquitto.org:8080)
 MqttClient mqtt("192.168.0.134", 1883, onMessageReceived);
 
+void tictoc_set(COMMAND command, int value){
+    switch(command){
+        case ON:
+            Serial.println("##### ON");
+            if(value & SWITCH_1)
+                digitalWrite(R, true);
+            if(value & SWITCH_2)
+                digitalWrite(G, true);
+            if(value & SWITCH_3)
+                digitalWrite(B, true);
+            break;
+        case OFF:
+            Serial.println("#### OFF");
+            if(value & SWITCH_1)
+                digitalWrite(R, false);
+            if(value & SWITCH_2)
+                digitalWrite(G, false);
+            if(value & SWITCH_3)
+                digitalWrite(B, false);
+            break;
+        default:
+            Serial.println("#### INVALID");
+    }
+}
+
 // Publish our message
 void publishMessage()
 {
@@ -27,7 +58,16 @@ void publishMessage()
     mqtt.publish("main/frameworks/sming", "Hello friends, from Internet of things :)"); // or publishWithQoS
 }
 
-// Callback for messages, arrived from MQTT server
+/* NOTES: Parses the json and control appropriate devices
+ *
+ * EXAMPLES:
+ * --------
+ * mosquitto_pub -t "main/status/hello" -m "{\"switchboard\":{\"ON\": $((2#00000001))}}"                           --> Switch ON device 1
+ * mosquitto_pub -t "main/status/hello" -m "{\"switchboard\":{\"ON\": $((2#00000111))}}"                           --> Switch ON device 1, 2, 3
+ * mosquitto_pub -t "main/status/hello" -m "{\"switchboard\":{\"OFF\": $((2#00000111))}}"                          --> Switch OFF device 1, 2, 3
+ * mosquitto_pub -t "main/status/hello" -m "{\"switchboard\":{\"ON\": $((2#00000001)), \"OFF\": $((2#00000110))}}" --> Switch ON device 1 and Switch OFF device 2 and 3
+ *
+ */
 void onMessageReceived(String topic, String message)
 {
     Serial.print(topic);
@@ -44,22 +84,6 @@ void onMessageReceived(String topic, String message)
         Serial.println("Parsing failed");
         return;
     }
-#if 0
-    JsonObject& switchboard = root["switchboard"];
-
-    if(switchboard.containsKey("ON")){
-        String status = switchboard["ON"].toString();
-        Serial.println("@@@@@@ ON" +  status);
-    }
-
-    if(switchboard.containsKey("OFF")){
-        String status = switchboard["OFF"].toString();
-        Serial.println("@@@@@@ OFF" + status);
-    }
-
-    root.printTo(Serial);
-    Serial.println("");
-#endif
 
     /*NOTES:
      *
@@ -69,15 +93,17 @@ void onMessageReceived(String topic, String message)
     //add validation for this when containsKey() method is working
     JsonObject& switchboard = root["switchboard"];
 
-    for (JsonObject::iterator it = switchboard.begin(); it != switchboard.end(); ++it)
+    for(JsonObject::iterator it = switchboard.begin(); it != switchboard.end(); ++it)
     {
         String key = it->key;
-        
+
         if(key == "ON"){
             Serial.println("@@@@@ ON");
+            tictoc_set(ON, it->value);
         }
         else if(key == "OFF"){
             Serial.println("@@@@@ OFF");
+            tictoc_set(OFF, it->value);
         }
         else
             Serial.println("@@@@@ INVALID KEY");
@@ -115,6 +141,10 @@ void connectFail()
 
 void init()
 {
+    pinMode(R, OUTPUT);
+    pinMode(G, OUTPUT);
+    pinMode(B, OUTPUT);
+
     Serial.begin(SERIAL_BAUD_RATE); // 115200 by default
     Serial.systemDebugOutput(true); // Debug output to serial
 
