@@ -1,0 +1,11 @@
+site_name: CTRL-R
+repo_url: https://github.com/kteza1/hng-switchboard
+site_description: Your home controller
+site_favicon: favicon.ico
+theme: readthedocs
+    
+pages:
+- INTRODUCTION: index.md
+- GETTING STARTED:
+    - Installing Sming: getting-started/INSTALLING SMING.md
+    - Accessing Serial Port: getting-started/ACCESSING SERIAL PORT.md
