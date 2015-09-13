@@ -1,0 +1,24 @@
+{
+    "switchboard": {
+        "1": {
+          "mode": "set",
+          "value": 0,
+          "ack": "ok"
+        },
+        "2": {
+          "mode": "set",
+          "value": 0,
+          "ack": "ok"
+        },
+        "3": {
+          "mode": "set",
+          "value": 0,
+          "ack": "ok"
+        },
+        "4": {
+          "mode": "set",
+          "value": 0,
+          "ack": "ok"
+        }        
+    }
+}

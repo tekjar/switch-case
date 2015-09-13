@@ -1,0 +1,34 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "Welcome to MkDocs\n\n\nFor full documentation visit \nmkdocs.org\n.\n\n\nCommands\n\n\n\n\nmkdocs new [dir-name]\n - Create a new project.\n\n\nmkdocs serve\n - Start the live-reloading docs server.\n\n\nmkdocs build\n - Build the documentation site.\n\n\nmkdocs help\n - Print this help message.\n\n\n\n\nProject layout\n\n\nmkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.", 
+            "title": "INTRODUCTION"
+        }, 
+        {
+            "location": "/#welcome-to-mkdocs", 
+            "text": "For full documentation visit  mkdocs.org .", 
+            "title": "Welcome to MkDocs"
+        }, 
+        {
+            "location": "/#commands", 
+            "text": "mkdocs new [dir-name]  - Create a new project.  mkdocs serve  - Start the live-reloading docs server.  mkdocs build  - Build the documentation site.  mkdocs help  - Print this help message.", 
+            "title": "Commands"
+        }, 
+        {
+            "location": "/#project-layout", 
+            "text": "mkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.", 
+            "title": "Project layout"
+        }, 
+        {
+            "location": "/getting-started/INSTALLING SMING/", 
+            "text": "INSTALLING SMING\n\n\n\n\n\n\nClone this repository\n\n\n\n\ngit clone --recursive https://github.com/kteza1/hng-switchboard.git\n\n\n\n\n\n\nSetup prebuilt \nesp-open-sdk\n\n\n\n\ncd ~/\ncurl -L -O https://bintray.com/artifact/download/kireevco/generic/esp-open-sdk-1.2-macos-x86_64.tar.gz\nsudo mkdir -p /opt/esp-open-sdk\nsudo tar -zxf esp-open-sdk-1.2-macos-x86_64.tar.gz -C /opt/esp-open-sdk\nsudo chmod -R 775 /opt/esp-open-sdk\n\n\n\n\n\n\nSetup \nspiffy\n\n\n\n\ncd spiffy\nmkdir build\nmake\nsudo cp build/spiffy /usr/bin/\nsudo chmod ugo+x /usr/bin/spiffy\n\n\n\n\n\n\nTest an example in \nSming\n with \nmake flash", 
+            "title": "Installing Sming"
+        }, 
+        {
+            "location": "/getting-started/ACCESSING SERIAL PORT/", 
+            "text": "ACCESSING BOARD THROUGH SERIAL PORT\n\n\n\n\nMAC OSX YOSEMITE 10.10.4\n\n\n\n\n\n\nInstall \nUSB-Serial driver\n\n\n\n\n\n\nls /dev/tty.*\n -\n Now check if a new device is visible after plugging nodemcu. This is your device of interest\n\n\n\n\n\n\nscreen /dev/tty.foo\n\n\n\n\n\n\nFor an IDE, you can use \nESPlorer\n\n\n\n\n\n\nLINUX UBUNTU 14.04\n\n\n\n\nNo need to install any driver. Just follow steps 2 and 3 of mac osx section. ESPlorer seems to be not able to detect USB-Serial\n\n\n\n\nWINDOWS 8\n\n\n\n\nTo be updated", 
+            "title": "Accessing Serial Port"
+        }
+    ]
+}
