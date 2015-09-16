@@ -1,0 +1,24 @@
+# This will be retured by switchboard when get '*' is requested
+
+[switchboard]
+# ip = "x.x.x.x"
+# method = "set"
+[switchboard.1]
+mode = "set"
+value = 100
+ack = "ok"
+
+[switchboard.2]
+mode = "get"
+value = 100
+ack = "ok"
+
+[switchboard.3]
+mode = "set"
+value = 100
+ack = "ok"
+
+[switchboard.4]
+mode = "set"
+value = 100
+ack = "ok"
