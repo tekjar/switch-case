@@ -1,6 +1,10 @@
 # hng-switchboard
 
-###PROJECT GOALS
+### DOCUMENTATION
+
+[HERE](http://kteza1.github.io/hng-switchboard/)
+
+### PROJECT GOALS
 
 - [ ] Smart switch board controllable throuhg mobile phone and home automation hubs
 - [ ] REST APIs
