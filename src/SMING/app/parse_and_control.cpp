@@ -1,9 +1,5 @@
 #include <app.h>
 
-#define R 12
-#define G 13
-#define B 14
-
 void switchcase_set(COMMAND command, int value){
     switch(command){
         case ON:
