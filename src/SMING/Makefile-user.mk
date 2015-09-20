@@ -2,6 +2,8 @@
 ## Parameters configured here will override default and ENV values.
 ## Uncomment and change examples:
 
+SPIFF_SIZE = 192000
+
 #Add your source directories here separated by space
 MODULES = app
 
