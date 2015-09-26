@@ -1,6 +1,3 @@
-language: c
-compiler: gcc
-
 before_install:
   - cd examples/travis-test
   - sudo pip install mkdocs
