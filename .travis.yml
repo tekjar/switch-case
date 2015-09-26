@@ -3,7 +3,7 @@ compiler: gcc
 
 before_install:
   - cd examples/travis-test
-  - sudo pip3 intall mkdocs
+  - sudo pip intall mkdocs
 
 scripts:
   - gcc hello.c -o hello
