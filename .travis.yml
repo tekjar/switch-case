@@ -1,2 +1,5 @@
 before_install:
   - sudo pip3 intall mkdocs
+
+scripts:
+  - mkdocs gh-deploy --clean
