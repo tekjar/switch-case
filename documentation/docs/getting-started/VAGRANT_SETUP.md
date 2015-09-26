@@ -1,4 +1,24 @@
-#Vagrant Setup
+##SWITCH-CASE VAGRANT SETUP
+---
+
+* Install [vagrant](https://www.vagrantup.com/) and get switch-case clone
+```
+git clone --recursive https://github.com/kteza1/switch-case
+```
+* Download, start and ssh into box
+```
+cd switch-case/Vagrant
+vagrant up
+vagrant ssh
+```
+
+
+
+
+
+##Vagrant Initial Setup
+
+NOTE: You don't need to follow these steps. These are use to create a vagrant box
 
 ###CREATING  A VAGRANT ENVIRONMENT
 
@@ -8,6 +28,8 @@
 * vagrant up                          #boots the virtual machine. Do this where vagrant config file is present
 * vagrant ssh                         #ssh into vagrant machine
 * vagrant halt                        #shutdown the virtual machine
+* vagrant package --output package.box #create a vagrant box of your env
+
 ```
 
 
