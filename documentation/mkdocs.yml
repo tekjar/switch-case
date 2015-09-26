@@ -9,3 +9,4 @@ pages:
 - GETTING STARTED:
     - Installing Sming: getting-started/INSTALLING SMING.md
     - Accessing Serial Port: getting-started/ACCESSING SERIAL PORT.md
+    - Installing Vagrant: getting-started/VAGRANT_SETUP.md
