@@ -1,4 +1,4 @@
-# hng-switchboard ![travis](https://travis-ci.org/kteza1/switch-case.svg)
+# hng-switchboard [![travis](https://travis-ci.org/kteza1/switch-case.svg)](https://travis-ci.org/kteza1/switch-case)
 
 ### DOCUMENTATION
 
