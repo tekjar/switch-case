@@ -1,7 +1,11 @@
 language: c
 
-before_install:
+compiler: gcc
+
+before_instalil:
+  - cd examples/travis-test
   - sudo pip3 intall mkdocs
 
 scripts:
+  - gcc hello.c -o hello
   - mkdocs gh-deploy --clean
