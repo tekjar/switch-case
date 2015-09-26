@@ -2,7 +2,7 @@
 
 ### DOCUMENTATION
 
-[HERE](http://kteza1.github.io/hng-switchboard/)
+[HERE](http://kteza1.github.io/switch-case/)
 
 ### PROJECT GOALS
 
