@@ -1,34 +1,44 @@
 {
     "docs": [
         {
-            "location": "/", 
-            "text": "Welcome to MkDocs\n\n\nFor full documentation visit \nmkdocs.org\n.\n\n\nCommands\n\n\n\n\nmkdocs new [dir-name]\n - Create a new project.\n\n\nmkdocs serve\n - Start the live-reloading docs server.\n\n\nmkdocs build\n - Build the documentation site.\n\n\nmkdocs help\n - Print this help message.\n\n\n\n\nProject layout\n\n\nmkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.", 
+            "location": "/",
+            "text": "Welcome to MkDocs\n\n\nFor full documentation visit \nmkdocs.org\n.\n\n\nCommands\n\n\n\n\nmkdocs new [dir-name]\n - Create a new project.\n\n\nmkdocs serve\n - Start the live-reloading docs server.\n\n\nmkdocs build\n - Build the documentation site.\n\n\nmkdocs help\n - Print this help message.\n\n\n\n\nProject layout\n\n\nmkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.",
             "title": "INTRODUCTION"
-        }, 
+        },
         {
-            "location": "/#welcome-to-mkdocs", 
-            "text": "For full documentation visit  mkdocs.org .", 
+            "location": "/#welcome-to-mkdocs",
+            "text": "For full documentation visit  mkdocs.org .",
             "title": "Welcome to MkDocs"
-        }, 
+        },
         {
-            "location": "/#commands", 
-            "text": "mkdocs new [dir-name]  - Create a new project.  mkdocs serve  - Start the live-reloading docs server.  mkdocs build  - Build the documentation site.  mkdocs help  - Print this help message.", 
+            "location": "/#commands",
+            "text": "mkdocs new [dir-name]  - Create a new project.  mkdocs serve  - Start the live-reloading docs server.  mkdocs build  - Build the documentation site.  mkdocs help  - Print this help message.",
             "title": "Commands"
-        }, 
+        },
         {
-            "location": "/#project-layout", 
-            "text": "mkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.", 
+            "location": "/#project-layout",
+            "text": "mkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.",
             "title": "Project layout"
-        }, 
+        },
         {
-            "location": "/getting-started/INSTALLING SMING/", 
-            "text": "INSTALLING SMING\n\n\n\n\n\n\nClone this repository\n\n\n\n\ngit clone --recursive https://github.com/kteza1/hng-switchboard.git\n\n\n\n\n\n\nSetup prebuilt \nesp-open-sdk\n\n\n\n\ncd ~/\ncurl -L -O https://bintray.com/artifact/download/kireevco/generic/esp-open-sdk-1.2-macos-x86_64.tar.gz\nsudo mkdir -p /opt/esp-open-sdk\nsudo tar -zxf esp-open-sdk-1.2-macos-x86_64.tar.gz -C /opt/esp-open-sdk\nsudo chmod -R 775 /opt/esp-open-sdk\n\n\n\n\n\n\nSetup \nspiffy\n\n\n\n\ncd spiffy\nmkdir build\nmake\nsudo cp build/spiffy /usr/bin/\nsudo chmod ugo+x /usr/bin/spiffy\n\n\n\n\n\n\nTest an example in \nSming\n with \nmake flash", 
+            "location": "/getting-started/INSTALLING SMING/",
+            "text": "INSTALLING SMING\n\n\n\n\n\n\nClone this repository\n\n\n\n\ngit clone --recursive https://github.com/kteza1/hng-switchboard.git\n\n\n\n\n\n\nSetup prebuilt \nesp-open-sdk\n\n\n\n\ncd ~/\ncurl -L -O https://bintray.com/artifact/download/kireevco/generic/esp-open-sdk-1.2-macos-x86_64.tar.gz\nsudo mkdir -p /opt/esp-open-sdk\nsudo tar -zxf esp-open-sdk-1.2-macos-x86_64.tar.gz -C /opt/esp-open-sdk\nsudo chmod -R 775 /opt/esp-open-sdk\n\n\n\n\n\n\nSetup \nspiffy\n\n\n\n\ncd spiffy\nmkdir build\nmake\nsudo cp build/spiffy /usr/bin/\nsudo chmod ugo+x /usr/bin/spiffy\n\n\n\n\n\n\nTest an example in \nSming\n with \nmake flash",
             "title": "Installing Sming"
-        }, 
+        },
         {
-            "location": "/getting-started/ACCESSING SERIAL PORT/", 
-            "text": "ACCESSING BOARD THROUGH SERIAL PORT\n\n\n\n\nMAC OSX YOSEMITE 10.10.4\n\n\n\n\n\n\nInstall \nUSB-Serial driver\n\n\n\n\n\n\nls /dev/tty.*\n -\n Now check if a new device is visible after plugging nodemcu. This is your device of interest\n\n\n\n\n\n\nscreen /dev/tty.foo\n\n\n\n\n\n\nFor an IDE, you can use \nESPlorer\n\n\n\n\n\n\nLINUX UBUNTU 14.04\n\n\n\n\nNo need to install any driver. Just follow steps 2 and 3 of mac osx section. ESPlorer seems to be not able to detect USB-Serial\n\n\n\n\nWINDOWS 8\n\n\n\n\nTo be updated", 
+            "location": "/getting-started/ACCESSING SERIAL PORT/",
+            "text": "ACCESSING BOARD THROUGH SERIAL PORT\n\n\n\n\nMAC OSX YOSEMITE 10.10.4\n\n\n\n\n\n\nInstall \nUSB-Serial driver\n\n\n\n\n\n\nls /dev/tty.*\n -> Now check if a new device is visible after plugging nodemcu. This is your device of interest\n\n\n\n\n\n\nscreen /dev/tty.foo\n\n\n\n\n\n\nFor an IDE, you can use \nESPlorer\n\n\n\n\n\n\nLINUX UBUNTU 14.04\n\n\n\n\nNo need to install any driver. Just follow steps 2 and 3 of mac osx section. ESPlorer seems to be not able to detect USB-Serial\n\n\n\n\nWINDOWS 8\n\n\n\n\nTo be updated",
             "title": "Accessing Serial Port"
+        },
+        {
+            "location": "/getting-started/VAGRANT_SETUP/",
+            "text": "Vagrant Setup\n\n\n\n\nuse ubuntu/trusty64 in vagrant file\n\n\nIncrease ram size during installation of esp-open-sdk\n\n\n\n\nconfig.vm.provider \"virtualbox\" do |v|\n    v.memory = 1024\n  end\n\n\n\n\n\n\nFollow the instructions \nhere\n\n\nDisable step 2 in Vagrantfile\n\n\n\n\nTROUBLESHOOT:\n\n\nFollow these only if there is a failure in build after following above steps\n\n\n\n\nAdd below extra repos to \n/etc/apt/sources.list\n  if you aren't able to install every dependecy in the above step\n\n\n\n\ndeb http://ftp.us.debian.org/debian/ jessie main\ndeb http://ftp.us.debian.org/debian/ wheezy non-free",
+            "title": "Installing Vagrant"
+        },
+        {
+            "location": "/getting-started/VAGRANT_SETUP/#vagrant-setup",
+            "text": "use ubuntu/trusty64 in vagrant file  Increase ram size during installation of esp-open-sdk   config.vm.provider \"virtualbox\" do |v|\n    v.memory = 1024\n  end   Follow the instructions  here  Disable step 2 in Vagrantfile   TROUBLESHOOT:  Follow these only if there is a failure in build after following above steps   Add below extra repos to  /etc/apt/sources.list   if you aren't able to install every dependecy in the above step   deb http://ftp.us.debian.org/debian/ jessie main\ndeb http://ftp.us.debian.org/debian/ wheezy non-free",
+            "title": "Vagrant Setup"
         }
     ]
 }
