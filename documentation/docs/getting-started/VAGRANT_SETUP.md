@@ -1,4 +1,17 @@
 #Vagrant Setup
+
+###CREATING  A VAGRANT ENVIRONMENT
+
+* vagrant box add ubuntu/trusty64     #downloads the virtualbox image
+* vagrant init ubuntu/trusty64        #creates vagrant config file
+* vagrant up                          #boots the virtual machine. Do this where vagrant config file is present
+* vagrant ssh                         #ssh into vagrant machine
+* vagrant halt                        #shutdown the virtual machine
+
+
+
+###BUILDING ESP-OPEN-SDK
+
 * use ubuntu/trusty64 in vagrant file
 * Increase ram size during installation of esp-open-sdk
 ```
