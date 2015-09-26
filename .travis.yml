@@ -1,11 +1,16 @@
 language: c
-
 compiler: gcc
 
-before_instalil:
+before_install:
   - cd examples/travis-test
   - sudo pip3 intall mkdocs
 
 scripts:
   - gcc hello.c -o hello
-  - mkdocs gh-deploy --clean
+
+after_success:
+  - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && mkdocs gh-deploy --clean
+
+env:
+  global:
+    secure: g0nzswzRwQz9enDbTdUnKaOkXv3hCI6FZq0hfC8N7xa0ELroRkWuLZ5EQrzotHjklLEvnVNXLq6jXbIfWwXZka0YtFlzMKrbk/A028KryKGXzKhHPGpzeSdg2Olv4EAG5xbsSnPlZS497T1bFQJ7JHB7J3+biKuM4IIvOzUQ/CoX6QWOQFCoz1sXpp+psrC3ruUrdXmenwH37jftZTvzDlP0+hWyeN27DGbchFVO2gycfA1qKC03o/TsKvwu1YQeNCOepdf0UZ4xn20u7424WxtaTCpAieF5s7RRUxepN2BS9CSFgl7LlNBxoZsGl/jy+a8+B6SwNvOzkOIPAgojYY41DR9woBGPhg4lKrrl3klnsk90qMFAySebSThETDvg3awqHRiXmIPAhxYWjDAc0UmiD/02594O6bJJFWGiW7j4EtZZSiOL1UTwcz+JRfHzIjIZBv36kC1P6OEGJDMBbKL523ilr3BszVIWWu/oJxZ8G9XKrmr3orzE93039HMYX8t7BGq3NsDBTMatP3qzDMXGkapDlYhEDqyygVfGYNcTyQtdwzW38ayoAaBpT7wP/ELlX9bY5Wx4cpzInJzUvMwk7XCiMeujc+zOhIDBHP9htTknYn4TnD9voGUqLDHEUxQm8fhYAvgGQOHaJRT809fwFMVaIks5bw2ZVCESNHs=
