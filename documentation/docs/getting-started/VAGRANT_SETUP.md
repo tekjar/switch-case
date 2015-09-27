@@ -1,7 +1,7 @@
 ##SWITCH-CASE VAGRANT SETUP
 ---
 
-* Install [vagrant](https://www.vagrantup.com/) and get switch-case clone
+* Install [vagrant](https://www.vagrantup.com/), virtual box and get switch-case clone
 ```
 git clone --recursive https://github.com/kteza1/switch-case
 ```
@@ -23,12 +23,12 @@ NOTE: You don't need to follow these steps. These are use to create a vagrant bo
 ###CREATING  A VAGRANT ENVIRONMENT
 
 ```
-* vagrant box add ubuntu/trusty64     #downloads the virtualbox image
-* vagrant init ubuntu/trusty64        #creates vagrant config file
-* vagrant up                          #boots the virtual machine. Do this where vagrant config file is present
-* vagrant ssh                         #ssh into vagrant machine
-* vagrant halt                        #shutdown the virtual machine
-* vagrant package --output package.box #create a vagrant box of your env
+* vagrant init ubuntu/trusty64  #creates vagrant config file
+* vagrant up                    #(downloads)boots the virtual machine. Do this where vagrant config file is present
+* vagrant ssh                                         #ssh into vagrant machine
+* vagrant halt                                        #shutdown the virtual machine
+* vagrant package --output package.box                #create a vagrant box of your env
+* vagrant box add --name ubuntu/trusty64 package.box  #create virtual machine from local box
 
 ```
 
@@ -39,11 +39,23 @@ NOTE: You don't need to follow these steps. These are use to create a vagrant bo
 * Increase ram size during installation of esp-open-sdk
 ```
 config.vm.provider "virtualbox" do |v|
-    v.memory = 1024
+    v.memory = "1024"
 end
 ```
-* Follow the instructions [here](https://github.com/pfalcon/esp-open-sdk#requirements-and-dependencies)
-* Disable step 2 in Vagrantfile
+* Follow the instructions [here](https://github.com/pfalcon/esp-open-sdk#requirements-and-dependencies) plus
+```
+    sudo apt-get install unzip
+    
+    # This package contains usbserial kernel drivers
+    # see http://ubuntu.5.x6.nabble.com/PATCH-0-2-linux-image-extra-support-td365008.html
+    sudo apt-get -y install linux-image-extra-virtual
+    
+    # Give the vagrant user permissions for the serial ports
+    sudo adduser vagrant dialout
+```
+
+* Set RAM to "256" in step 2 and restart the virtal machine 
+
 
 ######TROUBLESHOOT:
 Follow these only if there is a failure in build after following above steps
