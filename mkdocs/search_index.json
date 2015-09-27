@@ -1,0 +1,49 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "Welcome to MkDocs\n\n\nFor full documentation visit \nmkdocs.org\n.\n\n\nCommands\n\n\n\n\nmkdocs new [dir-name]\n - Create a new project.\n\n\nmkdocs serve\n - Start the live-reloading docs server.\n\n\nmkdocs build\n - Build the documentation site.\n\n\nmkdocs help\n - Print this help message.\n\n\n\n\nProject layout\n\n\nmkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.", 
+            "title": "INTRODUCTION"
+        }, 
+        {
+            "location": "/#welcome-to-mkdocs", 
+            "text": "For full documentation visit  mkdocs.org .", 
+            "title": "Welcome to MkDocs"
+        }, 
+        {
+            "location": "/#commands", 
+            "text": "mkdocs new [dir-name]  - Create a new project.  mkdocs serve  - Start the live-reloading docs server.  mkdocs build  - Build the documentation site.  mkdocs help  - Print this help message.", 
+            "title": "Commands"
+        }, 
+        {
+            "location": "/#project-layout", 
+            "text": "mkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.", 
+            "title": "Project layout"
+        }, 
+        {
+            "location": "/getting-started/INSTALLING SMING/", 
+            "text": "INSTALLING SMING\n\n\n\n\n\n\nClone this repository\n\n\n\n\ngit clone --recursive https://github.com/kteza1/hng-switchboard.git\n\n\n\n\n\n\nSetup prebuilt \nesp-open-sdk\n\n\n\n\ncd ~/\ncurl -L -O https://bintray.com/artifact/download/kireevco/generic/esp-open-sdk-1.2-macos-x86_64.tar.gz\nsudo mkdir -p /opt/esp-open-sdk\nsudo tar -zxf esp-open-sdk-1.2-macos-x86_64.tar.gz -C /opt/esp-open-sdk\nsudo chmod -R 775 /opt/esp-open-sdk\n\n\n\n\n\n\nSetup \nspiffy\n\n\n\n\ncd spiffy\nmkdir build\nmake\nsudo cp build/spiffy /usr/bin/\nsudo chmod ugo+x /usr/bin/spiffy\n\n\n\n\n\n\nTest an example in \nSming\n with \nmake flash", 
+            "title": "Installing Sming"
+        }, 
+        {
+            "location": "/getting-started/ACCESSING SERIAL PORT/", 
+            "text": "ACCESSING BOARD THROUGH SERIAL PORT\n\n\n\n\nMAC OSX YOSEMITE 10.10.4\n\n\n\n\n\n\nInstall \nUSB-Serial driver\n\n\n\n\n\n\nls /dev/tty.*\n -\n Now check if a new device is visible after plugging nodemcu. This is your device of interest\n\n\n\n\n\n\nscreen /dev/tty.foo\n\n\n\n\n\n\nFor an IDE, you can use \nESPlorer\n\n\n\n\n\n\nLINUX UBUNTU 14.04\n\n\n\n\nNo need to install any driver. Just follow steps 2 and 3 of mac osx section. ESPlorer seems to be not able to detect USB-Serial\n\n\n\n\nWINDOWS 8\n\n\n\n\nTo be updated", 
+            "title": "Accessing Serial Port"
+        }, 
+        {
+            "location": "/getting-started/VAGRANT_SETUP/", 
+            "text": "SWITCH-CASE VAGRANT SETUP\n\n\n\n\n\n\nInstall \nvagrant\n and get switch-case clone\n\n\n\n\ngit clone --recursive https://github.com/kteza1/switch-case\n\n\n\n\n\n\nDownload, start and ssh into box\n\n\n\n\ncd switch-case/Vagrant\nvagrant up\nvagrant ssh\n\n\n\n\nVagrant Initial Setup\n\n\nNOTE: You don't need to follow these steps. These are use to create a vagrant box\n\n\nCREATING  A VAGRANT ENVIRONMENT\n\n\n* vagrant box add ubuntu/trusty64     #downloads the virtualbox image\n* vagrant init ubuntu/trusty64        #creates vagrant config file\n* vagrant up                          #boots the virtual machine. Do this where vagrant config file is present\n* vagrant ssh                         #ssh into vagrant machine\n* vagrant halt                        #shutdown the virtual machine\n* vagrant package --output package.box #create a vagrant box of your env\n\n\n\n\n\nBUILDING ESP-OPEN-SDK\n\n\n\n\nuse ubuntu/trusty64 in vagrant file\n\n\nIncrease ram size during installation of esp-open-sdk\n\n\n\n\nconfig.vm.provider \nvirtualbox\n do |v|\n    v.memory = 1024\nend\n\n\n\n\n\n\nFollow the instructions \nhere\n\n\nDisable step 2 in Vagrantfile\n\n\n\n\nTROUBLESHOOT:\n\n\nFollow these only if there is a failure in build after following above steps\n\n\n\n\nAdd below extra repos to \n/etc/apt/sources.list\n  if you aren't able to install every dependecy in the above step\n\n\n\n\ndeb http://ftp.us.debian.org/debian/ jessie main\ndeb http://ftp.us.debian.org/debian/ wheezy non-free", 
+            "title": "Installing Vagrant"
+        }, 
+        {
+            "location": "/getting-started/VAGRANT_SETUP/#switch-case-vagrant-setup", 
+            "text": "Install  vagrant  and get switch-case clone   git clone --recursive https://github.com/kteza1/switch-case   Download, start and ssh into box   cd switch-case/Vagrant\nvagrant up\nvagrant ssh", 
+            "title": "SWITCH-CASE VAGRANT SETUP"
+        }, 
+        {
+            "location": "/getting-started/VAGRANT_SETUP/#vagrant-initial-setup", 
+            "text": "NOTE: You don't need to follow these steps. These are use to create a vagrant box  CREATING  A VAGRANT ENVIRONMENT  * vagrant box add ubuntu/trusty64     #downloads the virtualbox image\n* vagrant init ubuntu/trusty64        #creates vagrant config file\n* vagrant up                          #boots the virtual machine. Do this where vagrant config file is present\n* vagrant ssh                         #ssh into vagrant machine\n* vagrant halt                        #shutdown the virtual machine\n* vagrant package --output package.box #create a vagrant box of your env  BUILDING ESP-OPEN-SDK   use ubuntu/trusty64 in vagrant file  Increase ram size during installation of esp-open-sdk   config.vm.provider  virtualbox  do |v|\n    v.memory = 1024\nend   Follow the instructions  here  Disable step 2 in Vagrantfile   TROUBLESHOOT:  Follow these only if there is a failure in build after following above steps   Add below extra repos to  /etc/apt/sources.list   if you aren't able to install every dependecy in the above step   deb http://ftp.us.debian.org/debian/ jessie main\ndeb http://ftp.us.debian.org/debian/ wheezy non-free", 
+            "title": "Vagrant Initial Setup"
+        }
+    ]
+}
