@@ -143,7 +143,7 @@
                 <h2 id="switch-case-vagrant-setup">SWITCH-CASE VAGRANT SETUP</h2>
 <hr />
 <ul>
-<li>Install <a href="https://www.vagrantup.com/">vagrant</a> and get switch-case clone</li>
+<li>Install <a href="https://www.vagrantup.com/">vagrant</a>, virtual box and get switch-case clone</li>
 </ul>
 <pre><code>git clone --recursive https://github.com/kteza1/switch-case
 </code></pre>
@@ -159,12 +159,12 @@ vagrant ssh
 <h2 id="vagrant-initial-setup">Vagrant Initial Setup</h2>
 <p>NOTE: You don't need to follow these steps. These are use to create a vagrant box</p>
 <h3 id="creating-a-vagrant-environment">CREATING  A VAGRANT ENVIRONMENT</h3>
-<pre><code>* vagrant box add ubuntu/trusty64     #downloads the virtualbox image
-* vagrant init ubuntu/trusty64        #creates vagrant config file
-* vagrant up                          #boots the virtual machine. Do this where vagrant config file is present
-* vagrant ssh                         #ssh into vagrant machine
-* vagrant halt                        #shutdown the virtual machine
-* vagrant package --output package.box #create a vagrant box of your env
+<pre><code>* vagrant init ubuntu/trusty64  #creates vagrant config file
+* vagrant up                    #(downloads)boots the virtual machine. Do this where vagrant config file is present
+* vagrant ssh                                         #ssh into vagrant machine
+* vagrant halt                                        #shutdown the virtual machine
+* vagrant package --output package.box                #create a vagrant box of your env
+* vagrant box add --name ubuntu/trusty64 package.box  #create virtual machine from local box
 
 </code></pre>
 
@@ -174,13 +174,25 @@ vagrant ssh
 <li>Increase ram size during installation of esp-open-sdk</li>
 </ul>
 <pre><code>config.vm.provider &quot;virtualbox&quot; do |v|
-    v.memory = 1024
+    v.memory = &quot;1024&quot;
 end
 </code></pre>
 
 <ul>
-<li>Follow the instructions <a href="https://github.com/pfalcon/esp-open-sdk#requirements-and-dependencies">here</a></li>
-<li>Disable step 2 in Vagrantfile</li>
+<li>Follow the instructions <a href="https://github.com/pfalcon/esp-open-sdk#requirements-and-dependencies">here</a> plus</li>
+</ul>
+<pre><code>    sudo apt-get install unzip
+
+    # This package contains usbserial kernel drivers
+    # see http://ubuntu.5.x6.nabble.com/PATCH-0-2-linux-image-extra-support-td365008.html
+    sudo apt-get -y install linux-image-extra-virtual
+
+    # Give the vagrant user permissions for the serial ports
+    sudo adduser vagrant dialout
+</code></pre>
+
+<ul>
+<li>Set RAM to "256" in step 2 and restart the virtal machine </li>
 </ul>
 <h6 id="troubleshoot">TROUBLESHOOT:</h6>
 <p>Follow these only if there is a failure in build after following above steps</p>
