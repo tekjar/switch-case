@@ -1,6 +1,6 @@
 Vagrant/.vagrant
-src/SMING/out
+src/SMING/out/
 src/SMING/.settings
-.tags
 src/SMING/Sming/
+.tags
 examples/travis-test/target/

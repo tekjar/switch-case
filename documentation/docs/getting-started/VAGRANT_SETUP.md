@@ -18,7 +18,7 @@ vagrant ssh
 
 ##Vagrant Initial Setup
 
-NOTE: You don't need to follow these steps. These are use to create a vagrant box
+NOTE: You don't need to follow these steps. These are used to create a vagrant box
 
 ###CREATING  A VAGRANT ENVIRONMENT
 
@@ -28,7 +28,7 @@ NOTE: You don't need to follow these steps. These are use to create a vagrant bo
 * vagrant ssh                                         #ssh into vagrant machine
 * vagrant halt                                        #shutdown the virtual machine
 * vagrant package --output package.box                #create a vagrant box of your env
-* vagrant box add --name ubuntu/trusty64 package.box  #create virtual machine from local box
+* vagrant box add --name kteza1/trusty64 package.box  #create virtual machine with a name from local box
 
 ```
 
