@@ -3,3 +3,4 @@ src/SMING/out
 src/SMING/.settings
 .tags
 src/SMING/Sming/
+examples/travis-test/target/

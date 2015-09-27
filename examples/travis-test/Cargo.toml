@@ -1,0 +1,4 @@
+[package]
+name = "travis-test"
+version = "0.1.0"
+authors = ["RTR <k.teza1@gmail.com>"]
