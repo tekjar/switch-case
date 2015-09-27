@@ -3,13 +3,14 @@
 if [ "$TRAVIS_REPO_SLUG" == "kteza1/switch-case" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
 
   echo -e $TRAVIS_BUILD_DIR
+  echo $HOME
   echo -e "Publishing docs to github pages...\n"
 
-  cp -R documentation/site/* $HOME/doc-latest
+  cp -R $TRAVIS_BUILD_DIR/documentation/site/* $HOME/doc-latest
 
   cd $HOME
-  git config --global k.teza1@gmail.com "travis@travis-ci.org"
-  git config --global kteza1 "travis-ci"
+  git config --global user.email "travis@travis-ci.org"
+  git config --global user.name "travis-ci"
   git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/kteza1/switch-case gh-pages > /dev/null
 
   cd gh-pages
