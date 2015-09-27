@@ -1,9 +1,0 @@
-{
-    "switchboard": {
-        "1": {
-            "mode": "set",
-            "value": 0,
-            "ack": "ok"
-        }
-    }
-}
