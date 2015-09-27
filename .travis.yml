@@ -5,7 +5,7 @@ before_install:
   - sudo pip install mkdocs
 
 after_success:
-  - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && mkdocs gh-deploy --clean
+  - mkdocs gh-deploy --clean
 
 env:
   global:
