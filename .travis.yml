@@ -7,7 +7,7 @@ before_install:
 after_success:
   - cd $TRAVIS_BUILD_DIR/documentation
   - mkdocs build --clean
-  - mkdocs gh-deploy --clean
+  - developer-tools/deploy-pages.sh
 
 env:
   global:
