@@ -2,10 +2,11 @@
 
 if [ "$TRAVIS_REPO_SLUG" == "kteza1/switch-case" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
 
-  echo -e $TRAVIS_BUILD_DIR
-  echo $HOME
+  # echo -e $TRAVIS_BUILD_DIR
+  # echo $HOME
   echo -e "Publishing docs to github pages...\n"
 
+  mkdir -p $HOME/doc-latest 
   cp -R $TRAVIS_BUILD_DIR/documentation/site/* $HOME/doc-latest
 
   cd $HOME
