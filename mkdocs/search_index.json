@@ -2,23 +2,8 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Welcome to MkDocs\n\n\nFor full documentation visit \nmkdocs.org\n.\n\n\nCommands\n\n\n\n\nmkdocs new [dir-name]\n - Create a new project.\n\n\nmkdocs serve\n - Start the live-reloading docs server.\n\n\nmkdocs build\n - Build the documentation site.\n\n\nmkdocs help\n - Print this help message.\n\n\n\n\nProject layout\n\n\nmkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.", 
+            "text": "Welcome to documentation of \nSWITCH-CASE\n.", 
             "title": "INTRODUCTION"
-        }, 
-        {
-            "location": "/#welcome-to-mkdocs", 
-            "text": "For full documentation visit  mkdocs.org .", 
-            "title": "Welcome to MkDocs"
-        }, 
-        {
-            "location": "/#commands", 
-            "text": "mkdocs new [dir-name]  - Create a new project.  mkdocs serve  - Start the live-reloading docs server.  mkdocs build  - Build the documentation site.  mkdocs help  - Print this help message.", 
-            "title": "Commands"
-        }, 
-        {
-            "location": "/#project-layout", 
-            "text": "mkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.", 
-            "title": "Project layout"
         }, 
         {
             "location": "/getting-started/INSTALLING SMING/", 
@@ -44,6 +29,11 @@
             "location": "/getting-started/VAGRANT_SETUP/#vagrant-initial-setup", 
             "text": "NOTE: You don't need to follow these steps. These are used to create a vagrant box  CREATING  A VAGRANT ENVIRONMENT  * vagrant init ubuntu/trusty64  #creates vagrant config file\n* vagrant up                    #(downloads)boots the virtual machine. Do this where vagrant config file is present\n* vagrant ssh                                         #ssh into vagrant machine\n* vagrant halt                                        #shutdown the virtual machine\n* vagrant package --output package.box                #create a vagrant box of your env\n* vagrant box add --name kteza1/trusty64 package.box  #create virtual machine with a name from local box  BUILDING ESP-OPEN-SDK   use ubuntu/trusty64 in vagrant file  Increase ram size during installation of esp-open-sdk   config.vm.provider  virtualbox  do |v|\n    v.memory =  1024 \nend   Follow the instructions  here  plus       sudo apt-get install unzip\n\n    # This package contains usbserial kernel drivers\n    # see http://ubuntu.5.x6.nabble.com/PATCH-0-2-linux-image-extra-support-td365008.html\n    sudo apt-get -y install linux-image-extra-virtual\n\n    # Give the vagrant user permissions for the serial ports\n    sudo adduser vagrant dialout   Set RAM to \"256\" in step 2 and restart the virtal machine    TROUBLESHOOT:  Follow these only if there is a failure in build after following above steps   Add below extra repos to  /etc/apt/sources.list   if you aren't able to install every dependecy in the above step   deb http://ftp.us.debian.org/debian/ jessie main\ndeb http://ftp.us.debian.org/debian/ wheezy non-free", 
             "title": "Vagrant Initial Setup"
+        }, 
+        {
+            "location": "/connection-and-discovery/connection_and_discovery/", 
+            "text": "MQTT CONNECTION\n\n\n\n\n\n\nHow to connect local mqtt broker to wifi network ?\n\n\n\n\n\n\nHow to connect all the switch board to above local mqtt broker? Its ip will be dynamically assigned by the router.\n\n\n\n\n\n\nHow to connect client to local mqtt broker ?\n\n\n\n\n\n\nMQTT DISCOVERY\n\n\n\n\nAll the switch boards will subscribe to following topic\n\n\ndiscovery-request/hello\n\n\n\n\nAll the clients will subscribe to\n\n\ndiscovery-reply/hi\n\n\n\n\nOnly clients in local network will be able to communicate with switch boards. \n\n\nTwo levels of security here.\n\n\n\n\nWifi network authentication\n\n\nMqtt broker authentication\n\n\n\n\nAnd clients will publish to \ndiscovery-request/hello\n with message \nping\n. Switch board will respond with message \nMAC=$MAC_ADDRESS\n on topic \ndiscovery-reply\n\n\nNOTES:\n\n\n\n\n\n\nMobile client will add the discovered switch board to its \nknown devices\n list.\n\n\n\n\n\n\nOnly switch boards which are not added to \nknown-devices\n of the client will be visible during discovery.\n\n\n\n\n\n\nSwitch board GUI Will be highlighted only when switchboards are connected to local broker. Broker will keep note of connected switch boards", 
+            "title": "Mqtt connection and discovery"
         }
     ]
 }
