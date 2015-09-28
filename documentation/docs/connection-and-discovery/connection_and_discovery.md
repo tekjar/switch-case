@@ -34,9 +34,9 @@ And clients will publish to `discovery-request/hello` with message `ping`. Switc
 
 #####NOTES:
 
-* Mobile client will add the discovered switch board to known devices.
+* Mobile client will add the discovered switch board to its `known devices` list.
 
-* Only switch boards which are not added to `known-devices` of the client will be available during discovery.
+* Only switch boards which are not added to `known-devices` of the client will be visible during discovery.
 
 * Switch board GUI Will be highlighted only when switchboards are connected to local broker. Broker will keep note of connected switch boards
 

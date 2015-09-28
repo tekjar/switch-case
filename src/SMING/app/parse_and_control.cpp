@@ -25,24 +25,8 @@ void switchcase_set(COMMAND command, int value){
     }
 }
 
-void json_parseAndExecute(String message){
-    char switch_message[100] = {0};
-    sprintf(switch_message, "%s", message.c_str());
-
-    Serial.printf("Json message -> %s\n", message.c_str());
-
-    StaticJsonBuffer<200> json_buff;
-    JsonObject& root = json_buff.parseObject(switch_message);
-
-    if(!root.success()){
-        Serial.println("Parsing failed");
-        return;
-    }
-
-    //add validation for this when containsKey() method is working
-    JsonObject& switchboard = root["switchboard"];
-
-    for(JsonObject::iterator it = switchboard.begin(); it != switchboard.end(); ++it)
+void json_control(JsonObject& object){
+    for(JsonObject::iterator it = object.begin(); it != object.end(); ++it)
     {
         String key = it->key;
 
@@ -57,4 +41,22 @@ void json_parseAndExecute(String message){
         else
             Serial.println("@@@@@ INVALID KEY");
     }
+}
+
+void json_parse(String message){
+    char switch_message[100] = {0};
+    sprintf(switch_message, "%s", message.c_str());
+
+    Serial.printf("Json message -> %s\n", message.c_str());
+
+    StaticJsonBuffer<200> json_buff;
+    JsonObject& root = json_buff.parseObject(switch_message);
+
+    if(!root.success()){
+        Serial.println("Parsing failed");
+        return;
+    }
+
+    //add validation for this when containsKey() method is working
+    JsonObject& control = root["control"];
 }

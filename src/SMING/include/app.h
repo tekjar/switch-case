@@ -30,8 +30,12 @@ void switchcase_set(COMMAND command, int value);
 
 
 /*@@@@@@@@@@@@@@@ MQTT @@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+#define DISCOVERY_REQUEST_TOPIC        "discovery-request"
+#define DISCOVERY_REPLY_TOPIC          "discovery-reply"
+#define CONTROL_REQUEST_TOPIC          "control-request"
+#define CONTROL_REPLY_TOPIC            "control-reply"
 
-void mqtt_publishMessage();
+void mqtt_publishMessage(String topic, String message);
 void mqtt_onMessageReceive(String topic, String message);
 void mqtt_startClient();
 
