@@ -1,6 +1,6 @@
-site_name: CTRL-R
-repo_url: https://github.com/kteza1/hng-switchboard
-site_description: Your home controller
+site_name: SWITCH-CASE
+repo_url: https://github.com/kteza1/switch-case
+site_description: A smart switch board for your home
 site_favicon: favicon.ico
 theme: readthedocs
     
@@ -10,3 +10,5 @@ pages:
     - Installing Sming: getting-started/INSTALLING SMING.md
     - Accessing Serial Port: getting-started/ACCESSING SERIAL PORT.md
     - Installing Vagrant: getting-started/VAGRANT_SETUP.md
+- SOFTWARE DESIGN:
+    - Mqtt connection and discovery: connection-and-discovery/connection_and_discovery.md
