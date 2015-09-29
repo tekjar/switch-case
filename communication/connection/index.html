@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Mqtt connection and discovery - SWITCH-CASE</title>
+  <title>Mqtt connection - SWITCH-CASE</title>
   
 
   <link rel="shortcut icon" href="../../favicon.ico">
@@ -21,7 +21,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Mqtt connection and discovery";
+    var mkdocs_page_name = "Mqtt connection";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -93,19 +93,21 @@
         
             
     <li class="toctree-l1 current">
-        <a class="current" href="./">Mqtt connection and discovery</a>
+        <a class="current" href="./">Mqtt connection</a>
         
             <ul>
             
                 <li class="toctree-l3"><a href="#mqtt-connection">MQTT CONNECTION</a></li>
                 
             
-                <li class="toctree-l3"><a href="#mqtt-discovery">MQTT DISCOVERY</a></li>
-                
-                    <li><a class="toctree-l4" href="#notes">NOTES:</a></li>
-                
-            
             </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../discovery_and_control/">Mqtt discovery and Control</a>
         
     </li>
 
@@ -139,7 +141,7 @@
         
       
     
-    <li>Mqtt connection and discovery</li>
+    <li>Mqtt connection</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -165,41 +167,14 @@
 <p>How to connect client to local mqtt broker ?</p>
 </li>
 </ol>
-<h3 id="mqtt-discovery">MQTT DISCOVERY</h3>
-<hr />
-<p>All the switch boards will subscribe to following topic</p>
-<pre><code>discovery-request/hello
-</code></pre>
-
-<p>All the clients will subscribe to</p>
-<pre><code>discovery-reply/hi
-</code></pre>
-
-<p>Only clients in local network will be able to communicate with switch boards. </p>
-<p>Two levels of security here.</p>
-<ol>
-<li>Wifi network authentication</li>
-<li>Mqtt broker authentication</li>
-</ol>
-<p>And clients will publish to <code>discovery-request/hello</code> with message <code>ping</code>. Switch board will respond with message <code>MAC=$MAC_ADDRESS</code> on topic <code>discovery-reply</code></p>
-<h5 id="notes">NOTES:</h5>
-<ul>
-<li>
-<p>Mobile client will add the discovered switch board to its <code>known devices</code> list.</p>
-</li>
-<li>
-<p>Only switch boards which are not added to <code>known-devices</code> of the client will be visible during discovery.</p>
-</li>
-<li>
-<p>Switch board GUI Will be highlighted only when switchboards are connected to local broker. Broker will keep note of connected switch boards</p>
-</li>
-</ul>
               
             </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../discovery_and_control/" class="btn btn-neutral float-right" title="Mqtt discovery and Control"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../../getting-started/VAGRANT_SETUP/" class="btn btn-neutral" title="Installing Vagrant"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -232,6 +207,8 @@
       
         <span><a href="../../getting-started/VAGRANT_SETUP/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../discovery_and_control/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

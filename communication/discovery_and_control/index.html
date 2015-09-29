@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Mqtt discovery and Control - SWITCH-CASE</title>
+  
+
+  <link rel="shortcut icon" href="../../favicon.ico">
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Mqtt discovery and Control";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> SWITCH-CASE</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">INTRODUCTION</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>GETTING STARTED</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../getting-started/INSTALLING SMING/">Installing Sming</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../getting-started/ACCESSING SERIAL PORT/">Accessing Serial Port</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../getting-started/VAGRANT_SETUP/">Installing Vagrant</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>SOFTWARE DESIGN</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../connection/">Mqtt connection</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Mqtt discovery and Control</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#mqtt-discovery">MQTT DISCOVERY</a></li>
+                
+                    <li><a class="toctree-l4" href="#notes">NOTES</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#mqtt-control">MQTT CONTROL</a></li>
+                
+                    <li><a class="toctree-l4" href="#notes_1">NOTES</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#security">SECURITY</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">SWITCH-CASE</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>SOFTWARE DESIGN &raquo;</li>
+        
+      
+    
+    <li>Mqtt discovery and Control</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/kteza1/switch-case" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="mqtt-discovery">MQTT DISCOVERY</h3>
+<hr />
+<p>All the switch boards will subscribe to following topic</p>
+<pre><code>switch-case/find             ---&gt; //discovery request
+</code></pre>
+
+<p>and publish to</p>
+<pre><code>switch-case/$MAC_ADDR/find-reply
+</code></pre>
+
+<p>All the phones will subscribe to</p>
+<pre><code>switch-case/+/find-reply     ---&gt; //discovery reply. (with wild card)
+</code></pre>
+
+<p>mobile clients will publish to <code>switch-case/find</code> with message <code>hi</code>. Switch board will respond with below message on topic <code>switch-case/$MAC_ADDR/find-reply</code></p>
+<pre><code>hello 
+//May be some more data in proper json. Number of devices actually connected? TBD.
+
+</code></pre>
+
+<p>Since all the switch boards will subscibe to same topic <code>switch-case/find</code>, all of them will receive discovery requests and since all the mobile phones subscribe with wildcard, all of them will receive discovery replys.</p>
+<p><strong>CASE 1: NEW PHONE</strong>: With 1 publish to <code>switch-case/find</code>, all the switch boards will be found</p>
+<p><strong>CASE 2: NEW BOARD</strong>: Any 1 phone publishing to <code>switch-case/find</code>, all the phones will receive the reply</p>
+<h5 id="notes">NOTES</h5>
+<ul>
+<li>
+<p>Mobile client will add the discovered switch board to its <code>known devices</code> list.</p>
+</li>
+<li>
+<p>Only switch boards which are not added to <code>known-devices</code> of the client will be visible during discovery.</p>
+</li>
+</ul>
+<h3 id="mqtt-control">MQTT CONTROL</h3>
+<hr />
+<p>In case of control, <code>control request</code> from a phone should be directed to a particualar switch board and <code>control reply</code> from the switch board should be received by all the phones</p>
+<p>All the boards will subscribe to its <code>MAC ADDRESS</code> topic. Mobile phones will know of this <code>MAC</code> during discovery.</p>
+<p>Boards subscribe to </p>
+<pre><code>switch-case/$MAC_ADDR/request
+</code></pre>
+
+<p>and publish replys to </p>
+<pre><code>switch-case/$MAC_ADDR/reply
+</code></pre>
+
+<p>mobile phones will subscribe to </p>
+<pre><code>switch-case/+/reply  (observe the wild card)
+</code></pre>
+
+<p>Now all the mobile phones will receive the reply. Mac address in the reply topic can be used for debugging</p>
+<h5 id="notes_1">NOTES</h5>
+<ul>
+<li>Switch board GUI Will be highlighted only when switchboards are connected to local broker. Broker will keep note of connected switch boards</li>
+</ul>
+<h3 id="security">SECURITY</h3>
+<p>Only clients in local network will be able to communicate with switch boards. </p>
+<p>Two levels of security here.</p>
+<ol>
+<li>Wifi network authentication</li>
+<li>Mqtt broker authentication</li>
+</ol>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../connection/" class="btn btn-neutral" title="Mqtt connection"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../connection/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+
+</body>
+</html>
