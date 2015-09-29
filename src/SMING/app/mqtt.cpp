@@ -21,10 +21,10 @@ void mqtt_publishMessage(String topic, String message)
  *
  * EXAMPLES:
  * --------
- * mosquitto_pub -t "main/status/hello" -m "{\"control\":{\"ON\": $((2#00000001))}}"                           --> Switch ON device 1
- * mosquitto_pub -t "main/status/hello" -m "{\"control\":{\"ON\": $((2#00000111))}}"                           --> Switch ON device 1, 2, 3
- * mosquitto_pub -t "main/status/hello" -m "{\"control\":{\"OFF\": $((2#00000111))}}"                          --> Switch OFF device 1, 2, 3
- * mosquitto_pub -t "main/status/hello" -m "{\"control\":{\"ON\": $((2#00000001)), \"OFF\": $((2#00000110))}}" --> Switch ON device 1 and Switch OFF device 2 and 3
+ * mosquitto_pub -t "main/status/hello" -m "{\"ctrl-req\":{\"ON\": $((2#00000001))}}"                           --> Switch ON device 1
+ * mosquitto_pub -t "main/status/hello" -m "{\"ctrl-req\":{\"ON\": $((2#00000111))}}"                           --> Switch ON device 1, 2, 3
+ * mosquitto_pub -t "main/status/hello" -m "{\"ctrl-req\":{\"OFF\": $((2#00000111))}}"                          --> Switch OFF device 1, 2, 3
+ * mosquitto_pub -t "main/status/hello" -m "{\"ctrl-req\":{\"ON\": $((2#00000001)), \"OFF\": $((2#00000110))}}" --> Switch ON device 1 and Switch OFF device 2 and 3
  *
  */
 void mqtt_onMessageReceive(String topic, String message)

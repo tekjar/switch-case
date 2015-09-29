@@ -11,4 +11,5 @@ pages:
     - Accessing Serial Port: getting-started/ACCESSING SERIAL PORT.md
     - Installing Vagrant: getting-started/VAGRANT_SETUP.md
 - SOFTWARE DESIGN:
-    - Mqtt connection and discovery: connection-and-discovery/connection_and_discovery.md
+    - Mqtt connection: communication/connection.md
+    - Mqtt discovery and Control: communication/discovery_and_control.md
