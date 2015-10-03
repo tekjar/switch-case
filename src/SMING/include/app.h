@@ -8,6 +8,9 @@
 extern "C" {
 #endif
 
+extern String MAC_ADDR;
+
+
 /*@@@@@@@@@@@@@@@ PARSE AND CONTROL @@@@@@@@@@@@@@@*/
 #define R 12
 #define G 13
@@ -30,10 +33,14 @@ void switchcase_set(COMMAND command, int value);
 
 
 /*@@@@@@@@@@@@@@@ MQTT @@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
-#define DISCOVERY_REQUEST_TOPIC        "discovery-request"
-#define DISCOVERY_REPLY_TOPIC          "discovery-reply"
-#define CONTROL_REQUEST_TOPIC          "control-request"
-#define CONTROL_REPLY_TOPIC            "control-reply"
+//#define MQTT_BROKER "192.168.0.134"
+#define MQTT_BROKER "test.mosquitto.org"
+#define MQTT_PORT 1883
+
+#define DISCOVERY_REQUEST_TOPIC  "switch-case/find-req"
+#define DISCOVERY_REPLY_TOPIC    "switch-case/find-rep"
+#define CONTROL_REQUEST_TOPIC    "switch-case/" + MAC_ADDR + "/ctrl-req" 
+#define CONTROL_REPLY_TOPIC      "switch-case/" + MAC_ADDR + "/ctrl-rep"
 
 void mqtt_publishMessage(String topic, String message);
 void mqtt_onMessageReceive(String topic, String message);

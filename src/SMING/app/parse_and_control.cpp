@@ -47,13 +47,13 @@ void json_parse(String message){
     char switch_message[100] = {0};
     sprintf(switch_message, "%s", message.c_str());
 
-    Serial.printf("Json message -> %s\n", message.c_str());
+    Serial.printf("@@@ Json message -> %s @@@\n", message.c_str());
 
     StaticJsonBuffer<200> json_buff;
     JsonObject& root = json_buff.parseObject(switch_message);
 
     if(!root.success()){
-        Serial.println("Parsing failed");
+        Serial.println("@@@ Parsing failed @@@");
         return;
     }
 

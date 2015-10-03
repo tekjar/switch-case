@@ -8,44 +8,56 @@
 #define WIFI_PWD "abc@12345"
 #endif
 
+String MAC_ADDR;
+
 // Forward declarations
 void mqtt_startClient();
 void mqtt_onMessageReceive(String topic, String message);
 
+
 Timer procTimer;
 
-// Will be called when WiFi station was connected to AP
+/**
+ * @brief Callback when wifi connection is successful
+ * @details All your mqtt services will be started at this point
+ */
+//TODO: Handling wifi disconnections 
 void wifi_onConnectionSuccess()
 {
-    Serial.println("I'm CONNECTED");
+    Serial.println("@@@ Connected to AP @@@");
+
+    MAC_ADDR = WifiStation.getMAC();
+
+    Serial.printf("@@@ Switch Board Mac Address = %s @@@\n", MAC_ADDR.c_str()); 
 
     // Run MQTT client
-    mqtt_startClient();
-
-    // Run WebSocket Server
-    //websocket_startServer();
-
-    // Start publishing loop
-    //procTimer.initializeMs(20 * 1000, publishMessage).start(); // every 20 seconds
+    mqtt_startClient();    
 }
 
 // Will be called when WiFi station timeout was reached
 void wifi_onConnectionFail()
 {
-    Serial.println("I'm NOT CONNECTED. Need help :(");
+    Serial.println("@@@ I'm NOT CONNECTED. Need help :( @@@");
 
     // .. some you code for device configuration ..
 }
 
+/**
+ * @brief callback when system is ready
+ * @details 
+ */
 void system_onReady(){
     WifiStation.config(WIFI_SSID, WIFI_PWD);
     WifiStation.enable(true);
     WifiAccessPoint.enable(false);
 
+
+
     // Run our method when station was connected to AP (or not connected)
     WifiStation.waitConnection(wifi_onConnectionSuccess, 20, wifi_onConnectionFail);
     // We recommend 20+ seconds for connection timeout at start
 }
+
 
 void init()
 {
