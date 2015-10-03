@@ -23,8 +23,11 @@ vagrant ssh
 ```
 SerialException: device reports readiness to read but returned no data (device disconnected?)
 ```
-
-
+* This seems to be a problem with below kernel
+```
+uname -r
+3.13.0-63-generic
+```
 
 
 
