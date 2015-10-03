@@ -12,7 +12,22 @@ vagrant up
 vagrant ssh
 ```
 
+#####TROUBLESHOOT:
 
+- [x] Unable to find `/dev/ttyUSB0` when esp is plugged in.
+1. Do `lsusb` in virtual machaing with and without esp plugged in. If don't see an extra interface when plugged in, make sure that you find usb-serial connection in your host machine when you do `VBoxManage list usbhost` and enter `product id` and `vendor id` in yml config file and do `vagrant halt` and `vagrant up`.
+2. Open virtual box app and see if multiple virtual machines are running. Stop unnecessary running virtual machines
+
+- [x] Unable to `connect` to USB serial.
+1. Do `esp-console 115200`. If you see below message, some other resource is using the port
+```
+SerialException: device reports readiness to read but returned no data (device disconnected?)
+```
+* This seems to be a problem with below kernel
+```
+uname -r
+3.13.0-63-generic
+```
 
 
 
