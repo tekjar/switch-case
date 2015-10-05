@@ -10,6 +10,30 @@ extern "C" {
 
 extern String MAC_ADDR;
 
+/*@@@@@@@@@@@@@@@ DEBUG @@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+
+#include <stdio.h>
+
+#define KNRM  "\x1B[0m"
+#define KRED  "\x1B[31m"
+#define KGRN  "\x1B[32m"
+#define KYEL  "\x1B[33m"
+#define KBLU  "\x1B[34m"
+#define KMAG  "\x1B[35m"
+#define KCYN  "\x1B[36m"
+#define KWHT  "\x1B[37m"
+#define RESET "\033[0m"
+
+#define DEBUG
+
+
+
+#ifdef DEBUG
+#define PRINTF_DBG(fmt, args...)  Serial.printf(KYEL "{%s,%s,%d} -> " fmt RESET, __FILE__, __func__, __LINE__, ##args) // ## removes trailing , when there is just string
+#define PRINTF_ERR(fmt, args...)  Serial.printf(KCYN "{%s,%s,%d} -> " fmt RESET, __FILE__, __func__, __LINE__, ##args) 
+#define PRINTF_CRIT(fmt, args...) Serial.printf(KRED "{%s,%s,%d} -> " fmt RESET, __FILE__, __func__, __LINE__, ##args)
+#endif
+
 
 /*@@@@@@@@@@@@@@@ PARSE AND CONTROL @@@@@@@@@@@@@@@*/
 #define R 12

@@ -24,11 +24,11 @@ Timer procTimer;
 //TODO: Handling wifi disconnections 
 void wifi_onConnectionSuccess()
 {
-    Serial.println("@@@ Connected to AP @@@");
+    PRINTF_DBG("Connected to AP\n");
 
     MAC_ADDR = WifiStation.getMAC();
 
-    Serial.printf("@@@ Switch Board Mac Address = %s @@@\n", MAC_ADDR.c_str()); 
+    PRINTF_DBG("Switch Board Mac Address = %s\n", MAC_ADDR.c_str()); 
 
     // Run MQTT client
     mqtt_startClient();    
@@ -37,7 +37,7 @@ void wifi_onConnectionSuccess()
 // Will be called when WiFi station timeout was reached
 void wifi_onConnectionFail()
 {
-    Serial.println("@@@ I'm NOT CONNECTED. Need help :( @@@");
+    PRINTF_CRIT("I'm NOT CONNECTED. Need help :(");
 
     // .. some you code for device configuration ..
 }
