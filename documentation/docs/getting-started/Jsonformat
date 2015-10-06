@@ -1,0 +1,21 @@
+LOCATION
+
+Accepts GeoJSON features containing only one point.
+
+Note that according to the GeoJSON standard coordinates are supposed to be [longitude, latitude ] ([E-W, N-S], in the [-180 - 180, -90 - 90] range). Some other services (such as Google Maps) use coordinate representation in a [latitude, longitude] format and care must be taken to flip the coordinates when interfacing with such services.
+
+Example value:
+
+{
+  "value": {
+    "type": "Feature",
+    "properties": {},
+    "geometry": {
+    "type": "Point",
+    "coordinates": [
+       -0.12685775756835938,
+       51.43809241973026
+       ]
+    }
+  }
+}
