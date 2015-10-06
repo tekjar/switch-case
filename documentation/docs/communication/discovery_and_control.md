@@ -1,30 +1,42 @@
+####TLDR;
+
+```
+
+|           	| esp sub/ client pub topic  	| msg sent by client/ received by esp(s)                                                                                                 	| client sub/ esp pub topic  	| msg sent by esp/ received by client(s)                                                                       	|
+|-----------	|----------------------------	|----------------------------------------------------------------------------------------------------------------------------------------	|----------------------------	|--------------------------------------------------------------------------------------------------------------	|
+| discovery 	| switch-case/find-req       	| {"CLIENT MAC": "00:E0:A0:AA:AA:AA"}                                                                                                    	| switch-case/find-rep       	| {"ESP MAC":"00:E0:A0:AA:AA:AB"}                                                                              	|
+| control   	| switch-case/$EMAC/ctrl-req  | {"CMAC": ""00:E0:A0:AA:AA:AA", "ctrl-req":{"ON": "0b00000001", "OFF": "0b00000110"}}//Switch ON device 1 and Switch OFF device 2 and 3  | switch-case/ctrl-rep       	| {"ctrl-rep":{"ON": "0b00000001", "OFF":"0b00000110"}} //Switched ON device 1 and Switched OFF device 2 and 3  |
+| info      	| switch-case/$EMAC/info-req  | {"CMAC": ""00:E0:A0:AA:AA:AA", "info-req":["status", "power consumption"]}                                                              | switch-case/$CMAC/info-rep 	| {"info-rep": {All requested info}}                                                                            |
+```
+
+
+
 ###MQTT DISCOVERY
 ---
 
 All the switch boards will subscribe to following topic
 
 ```
-switch-case/find             ---> //discovery request
+switch-case/find-req             ---> //discovery request
 ```
 
 and publish to
 
 ```
-switch-case/$MAC_ADDR/find-reply
+switch-case/find-rep
 ```
 
 
 All the phones will subscribe to
 ```
-switch-case/+/find-reply     ---> //discovery reply. (with wild card)
+switch-case/find-reply     ---> //discovery reply
 ```
 
-mobile clients will publish to `switch-case/find` with message `hi`. Switch board will respond with below message on topic `switch-case/$MAC_ADDR/find-reply`
+mobile clients will publish to `switch-case/find-req` with message `hi`. Switch board will respond with below message on topic `switch-case/find-reply`
 
 ```
 hello 
 //May be some more data in proper json. Number of devices actually connected? TBD.
-
 ```
 
 Since all the switch boards will subscibe to same topic `switch-case/find`, all of them will receive discovery requests and since all the mobile phones subscribe with wildcard, all of them will receive discovery replys.
