@@ -104,6 +104,9 @@
         
             <ul>
             
+                <li class="toctree-l3"><a href="#tldr">TLDR;</a></li>
+                
+            
                 <li class="toctree-l3"><a href="#mqtt-discovery">MQTT DISCOVERY</a></li>
                 
                     <li><a class="toctree-l4" href="#notes">NOTES</a></li>
@@ -165,24 +168,32 @@
           <div role="main">
             <div class="section">
               
-                <h3 id="mqtt-discovery">MQTT DISCOVERY</h3>
+                <h4 id="tldr">TLDR;</h4>
+<pre><code>
+|               | esp sub/ client pub topic     | msg sent by client/ received by esp(s)                                                                                                    | client sub/ esp pub topic     | msg sent by esp/ received by client(s)                                                                        |
+|-----------    |----------------------------   |----------------------------------------------------------------------------------------------------------------------------------------   |----------------------------   |-------------------------------------------------------------------------------------------------------------- |
+| discovery     | switch-case/find-req          | {&quot;CLIENT MAC&quot;: &quot;00:E0:A0:AA:AA:AA&quot;}                                                                                                       | switch-case/find-rep          | {&quot;ESP MAC&quot;:&quot;00:E0:A0:AA:AA:AB&quot;}                                                                               |
+| control       | switch-case/$EMAC/ctrl-req  | {&quot;CMAC&quot;: &quot;&quot;00:E0:A0:AA:AA:AA&quot;, &quot;ctrl-req&quot;:{&quot;ON&quot;: &quot;0b00000001&quot;, &quot;OFF&quot;: &quot;0b00000110&quot;}}//Switch ON device 1 and Switch OFF device 2 and 3  | switch-case/ctrl-rep          | {&quot;ctrl-rep&quot;:{&quot;ON&quot;: &quot;0b00000001&quot;, &quot;OFF&quot;:&quot;0b00000110&quot;}} //Switched ON device 1 and Switched OFF device 2 and 3  |
+| info          | switch-case/$EMAC/info-req  | {&quot;CMAC&quot;: &quot;&quot;00:E0:A0:AA:AA:AA&quot;, &quot;info-req&quot;:[&quot;status&quot;, &quot;power consumption&quot;]}                                                              | switch-case/$CMAC/info-rep    | {&quot;info-rep&quot;: {All requested info}}                                                                            |
+</code></pre>
+
+<h3 id="mqtt-discovery">MQTT DISCOVERY</h3>
 <hr />
 <p>All the switch boards will subscribe to following topic</p>
-<pre><code>switch-case/find             ---&gt; //discovery request
+<pre><code>switch-case/find-req             ---&gt; //discovery request
 </code></pre>
 
 <p>and publish to</p>
-<pre><code>switch-case/$MAC_ADDR/find-reply
+<pre><code>switch-case/find-rep
 </code></pre>
 
 <p>All the phones will subscribe to</p>
-<pre><code>switch-case/+/find-reply     ---&gt; //discovery reply. (with wild card)
+<pre><code>switch-case/find-reply     ---&gt; //discovery reply
 </code></pre>
 
-<p>mobile clients will publish to <code>switch-case/find</code> with message <code>hi</code>. Switch board will respond with below message on topic <code>switch-case/$MAC_ADDR/find-reply</code></p>
+<p>mobile clients will publish to <code>switch-case/find-req</code> with message <code>hi</code>. Switch board will respond with below message on topic <code>switch-case/find-reply</code></p>
 <pre><code>hello 
 //May be some more data in proper json. Number of devices actually connected? TBD.
-
 </code></pre>
 
 <p>Since all the switch boards will subscibe to same topic <code>switch-case/find</code>, all of them will receive discovery requests and since all the mobile phones subscribe with wildcard, all of them will receive discovery replys.</p>
