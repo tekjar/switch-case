@@ -1,6 +1,0 @@
-[submodule "spiffy"]
-	path = spiffy
-	url = https://github.com/alonewolfx2/spiffy.git
-[submodule "developer-tools/esptool"]
-	path = developer-tools/esptool
-	url = https://github.com/themadinventor/esptool.git
