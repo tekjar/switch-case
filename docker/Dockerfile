@@ -52,6 +52,11 @@ RUN chmod +rx esptool.py
 # Clone Sming Core
 RUN git clone https://github.com/SmingHub/Sming.git /opt/sming
 
+# ------------------------------------------------------------------------------
+# Clone ESPTOOL2
+RUN git clone https://github.com/raburton/esp8266.git /opt/rbutron-esp8266
+WORKDIR /opt/rbutron-esp8266/esptool2
+RUN make
 
 # ------------------------------------------------------------------------------
 # Enviromnent settings
@@ -60,6 +65,8 @@ ENV SMING_HOME="/opt/sming/Sming"
 ENV CXX="/opt/esp-open-sdk/xtensa-lx106-elf/bin/xtensa-lx106-elf-g++"
 ENV CC="/opt/esp-open-sdk/xtensa-lx106-elf/bin/xtensa-lx106-elf-gcc"
 ENV PATH="/opt/esp-open-sdk/xtensa-lx106-elf/bin:${PATH}"
+ENV ESPTOOL2="/opt/rbutron-esp8266/esptool2"
+ENV RBOOT_ENABLED=1
 
 ENV COM_SPEED_ESPTOOL=230400
 
