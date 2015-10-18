@@ -65,8 +65,14 @@ ENV SMING_HOME="/opt/sming/Sming"
 ENV CXX="/opt/esp-open-sdk/xtensa-lx106-elf/bin/xtensa-lx106-elf-g++"
 ENV CC="/opt/esp-open-sdk/xtensa-lx106-elf/bin/xtensa-lx106-elf-gcc"
 ENV PATH="/opt/esp-open-sdk/xtensa-lx106-elf/bin:${PATH}"
-ENV ESPTOOL2="/opt/rbutron-esp8266/esptool2"
+ENV ESPTOOL2="/opt/rbutron-esp8266/esptool2/esptool2"
 ENV RBOOT_ENABLED=1
+ENV DISABLE_SPIFFS_AUTO=1
+ENV WIFI_SSID="OpenWrt"
+ENV WIFI_PWD="abc@12345"
+
+WORKDIR /opt/sming/Sming
+RUN make
 
 ENV COM_SPEED_ESPTOOL=230400
 

@@ -9,11 +9,34 @@
 
 ##### DOCKER COMMANDS
 
+#####GENERAL
+
 - [ ] docker ps                      --> Lists all running containers
 - [ ] docker stop $(docker ps -a -q) --> Stops all containers
 - [ ] docker rm $(docker ps -a -q)   --> Removes all containers
 - [ ] docker images                  --> Lists all available images
 - [ ] docker rmi NAME:TAG/IMAGE ID   --> Removes an image
+
+#####REPO
+
+1. Tag your image
+
+```
+docker tag $IMAGE_ID kteza1/switch-case
+docker images
+```
+
+2. Push your image
+
+```
+docker push kteza1/switch-case
+```
+
+3. Pull an image. (May be you need to remove your images first)
+
+```
+docker pull kteza1/switch-case
+```
 
 
 ##### TROUBLESHOOT
