@@ -1,9 +1,22 @@
 #include <app.h>
 
+/**
+ * @file
+ * @brief All your MQTT related stuff
+ */
+
 MqttClient xMqtt(MQTT_BROKER, MQTT_PORT, mqtt_onMessageReceive);
 Timer mqttTimer;
 
 // Publish our message
+
+
+/**
+ * @brief      Plublishes
+ *
+ * @param[in]  topic    Topic
+ * @param[in]  message  Message
+ */
 void mqtt_publishMessage(String topic, String message)
 {
     if (xMqtt.getConnectionState() != eTCS_Connected)
@@ -27,15 +40,16 @@ void mqtt_publishMessage(String topic, String message)
  * @brief Callback when there is a message on any of the subscription
  * @details All the processing of messages will be done here
  * 
- * @param topic topic on which message is received
- * @param message message string
+ * @param[in] topic Topic on which message is received
+ * @param[in] message Message string
  * 
- * @test mosquitto_sub -t "switch-case/find-rep" + mosquitto_pub -t "switch-case/find-req" -m "ping"
- * @test mosquitto_sub -t "switch-case/$MAC_ADDR/ctrl-rep" + mosquitto_pub -t "switch-case/$MAC_ADDR/ctrl-req" -m "{Your Json}"
+ * @test DISCOVERY ---> mosquitto_sub -t "switch-case/find-rep" + mosquitto_pub -t "switch-case/find-req" -m "ping"
+ * @test CONTROL   ---> mosquitto_sub -t "switch-case/$MAC_ADDR/ctrl-rep" + mosquitto_pub -t "switch-case/$MAC_ADDR/ctrl-req" -m "{Your Json}"
+ * @test OTA       ---> mosquitto_sub -h "test.mosquitto.org" -t "switch-case/ota-rep" + mosquitto_pub -h "test.mosquitto.org" -t "switch-case/ota-req" -m "begging you to update"
  */
  void mqtt_onMessageReceive(String topic, String message)
  {
-    Serial.printf("@@@ Topic = %s, Message = %s @@@\n", topic.c_str(), message.c_str());
+    PRINTF_INFO("@@@ Topic = %s, Message = %s @@@\n", topic.c_str(), message.c_str());
 
     if(topic == DISCOVERY_REQUEST_TOPIC){
         mqtt_publishMessage(DISCOVERY_REPLY_TOPIC, "discovery-reply: " + MAC_ADDR);
@@ -44,35 +58,43 @@ void mqtt_publishMessage(String topic, String message)
         mqtt_publishMessage(CONTROL_REPLY_TOPIC, "control-reply: " + message);
 
     }
+    else if(topic == OTA_UPDATE_TOPIC){
+        PRINTF_INFO("RECIVED REQUEST ON OTA UPDATE TOPIC\n");
+        system_showInfo();
+        ota_update();
+        //TODO: Send whether OTA is a success or failure
+        mqtt_publishMessage(OTA_REPLY_TOPIC, "ota-reply: done");
+    }
     else{
-        Serial.printf("@@@ Invalid topic @@@\n");
+        PRINTF_ERR("@@@ Invalid topic @@@\n");
     }
 
 }
 
 /**
  * @brief Start mqtt client and subscribe to all necessary topics
- * @details Keeps trying to connect to mqtt broker
+ * @details Keeps trying to connect to mqtt broker in case of failure
  */
 void mqtt_startClient()
 {
-    Serial.println("@@@ Trying MQTT Connect @@@");
+    PRINTF_INFO("@@@ Trying MQTT Connect @@@\n");
     if(xMqtt.connect("MOSQUITTO") == true){
         mqttTimer.stop();
         
-        Serial.println("@@@ MQTT CONNECTED @@@");
-
         /* Subscribe to all necessary topics */
         xMqtt.subscribe(DISCOVERY_REQUEST_TOPIC);
         xMqtt.subscribe(CONTROL_REQUEST_TOPIC);
+        xMqtt.subscribe(OTA_REQUEST_TOPIC);
 
-        Serial.println("\r\n=== MQTT CLIENT STARTED ===");
-        Serial.println(WifiStation.getIP());
-        Serial.println("==============================\r\n");
+        PRINTF_INFO("========= MQTT Connected, Subscribed =========\n");
+        PRINTF_INFO("My ID = %s\n", WifiStation.getMAC().c_str());
+        PRINTF_INFO("My IP = %s\n", WifiStation.getIP().toString().c_str());
+        PRINTF_INFO("==============================================\r\n");
 
     }
     else{
-        mqttTimer.initializeMs(10 * 1000, mqtt_startClient).start(); // every 20 seconds
+        PRINTF_ERR("Failed to connect to broker. Retrying in 10 secs....\n");
+        mqttTimer.initializeMs(10 * 1000, mqtt_startClient).start(); // every 10 seconds
     }
     
 }

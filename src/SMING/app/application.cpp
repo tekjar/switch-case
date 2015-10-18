@@ -2,6 +2,11 @@
 #include <SmingCore/SmingCore.h>
 #include <app.h>
 
+/**
+ * @file
+ * @brief Where it all starts
+ */
+
 // If you want, you can define WiFi settings globally in Eclipse Environment Variables
 #ifndef WIFI_SSID
 #define WIFI_SSID "OpenWrt" // Put you SSID and Password here

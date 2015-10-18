@@ -1,6 +1,11 @@
 
 #include <app.h>
 
+/**
+ * @file
+ * @brief Device discovery APIs
+ */
+
 void switchcase_discover(){
 	String mac = WifiStation.getMAC();
 	/* Construct a proper json message with mac address */

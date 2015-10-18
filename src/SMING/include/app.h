@@ -29,9 +29,10 @@ extern String MAC_ADDR;
 
 
 #ifdef DEBUG
-#define PRINTF_DBG(fmt, args...)  Serial.printf(KYEL "{%s,%s,%d} -> " fmt RESET, __FILE__, __func__, __LINE__, ##args) // ## removes trailing , when there is just string
-#define PRINTF_ERR(fmt, args...)  Serial.printf(KCYN "{%s,%s,%d} -> " fmt RESET, __FILE__, __func__, __LINE__, ##args) 
-#define PRINTF_CRIT(fmt, args...) Serial.printf(KRED "{%s,%s,%d} -> " fmt RESET, __FILE__, __func__, __LINE__, ##args)
+#define PRINTF_INFO(fmt, args...) Serial.printf(KBLU "{%s,%d} -> " fmt RESET, __func__, __LINE__, ##args)
+#define PRINTF_DBG(fmt, args...)  Serial.printf(KYEL "{%s,%d} -> " fmt RESET, __func__, __LINE__, ##args) // ## removes trailing , when there is just string
+#define PRINTF_ERR(fmt, args...)  Serial.printf(KCYN "{%s,%d} -> " fmt RESET, __func__, __LINE__, ##args) 
+#define PRINTF_CRIT(fmt, args...) Serial.printf(KRED "{%s,%d} -> " fmt RESET, __func__, __LINE__, ##args)
 #endif
 
 
@@ -65,10 +66,25 @@ void switchcase_set(COMMAND command, int value);
 #define DISCOVERY_REPLY_TOPIC    "switch-case/find-rep"
 #define CONTROL_REQUEST_TOPIC    "switch-case/" + MAC_ADDR + "/ctrl-req" 
 #define CONTROL_REPLY_TOPIC      "switch-case/" + MAC_ADDR + "/ctrl-rep"
+#define OTA_REQUEST_TOPIC		 "switch-case/ota-req"
+#define OTA_REPLY_TOPIC			 "switch-case/ota-rep"
+
 
 void mqtt_publishMessage(String topic, String message);
 void mqtt_onMessageReceive(String topic, String message);
 void mqtt_startClient();
+
+/*@@@@@@@@@@@@@@@@@@@@@ OTA @@@@@@@@@@@@@@@@@@@@@@@*/
+
+void ota_onUpdate(bool result);
+void ota_update();
+
+/*@@@@@@@@@@@@@@@@@@@ SYSTEM @@@@@@@@@@@@@@@@@@@@@@@*/
+void system_showInfo();
+
+
+
+
 
 #ifdef __cplusplus
 }

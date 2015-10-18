@@ -4,6 +4,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+	#define ROM_0_URL  "http://192.168.0.134:80/rom0.bin"
+    #define ROM_1_URL  "http://192.168.0.134:80/rom1.bin"
+    #define SPIFFS_URL "http://192.168.0.134:80/spiff_rom.bin"
 
 	// UART config
 	#define SERIAL_BAUD_RATE 115200
