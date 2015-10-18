@@ -47,7 +47,7 @@ void mqtt_publishMessage(String topic, String message)
  * @test CONTROL   ---> mosquitto_sub -t "switch-case/$MAC_ADDR/ctrl-rep" + mosquitto_pub -t "switch-case/$MAC_ADDR/ctrl-req" -m "{Your Json}"
  * @test OTA       ---> mosquitto_sub -h "test.mosquitto.org" -t "switch-case/ota-rep" + mosquitto_pub -h "test.mosquitto.org" -t "switch-case/ota-req" -m "begging you to update"
  */
- void mqtt_onMessageReceive(String topic, String message)
+ void mqtt_onMessageReceive(String topic, String messagemosquitto_pub -h "test.mosquitto.org" -t "switch-case/ota-req" -m "begging you to update")
  {
     PRINTF_INFO("@@@ Topic = %s, Message = %s @@@\n", topic.c_str(), message.c_str());
 
@@ -58,7 +58,7 @@ void mqtt_publishMessage(String topic, String message)
         mqtt_publishMessage(CONTROL_REPLY_TOPIC, "control-reply: " + message);
 
     }
-    else if(topic == OTA_UPDATE_TOPIC){
+    else if(topic == OTA_REQUEST_TOPIC){
         PRINTF_INFO("RECIVED REQUEST ON OTA UPDATE TOPIC\n");
         system_showInfo();
         ota_update();
