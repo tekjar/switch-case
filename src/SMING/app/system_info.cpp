@@ -4,7 +4,11 @@
  * @file
  * @brief All your system information APIs
  */
- 
+
+
+/**
+ * @brief      Gets your current system information
+ */
 void system_showInfo() {
     PRINTF_INFO("\r\nSDK: v%s\r\n", system_get_sdk_version());
     PRINTF_INFO("Free Heap: %d\r\n", system_get_free_heap_size());
