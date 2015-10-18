@@ -3,8 +3,11 @@ language: rust
 before_install:
   - cd $TRAVIS_BUILD_DIR/examples/travis-test
   - sudo pip install mkdocs
+  - apt-get install doxygen
 
 after_success:
+  - cd $TRAVIS_BUILD_DIR/doxygen
+  - doxygen
   - cd $TRAVIS_BUILD_DIR/documentation
   - mkdocs build --clean
   - $TRAVIS_BUILD_DIR/developer-tools/deploy-pages.sh
