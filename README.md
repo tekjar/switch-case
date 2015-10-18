@@ -2,7 +2,8 @@
 
 ### DOCUMENTATION
 
-[HERE](http://kteza1.github.io/switch-case/)
+DESIGN  : [HERE](http://kteza1.github.io/switch-case/)
+DOXYGEN : [HERE](http://kteza1.github.io/switch-case/doxygen/)
 
 ### PROJECT GOALS
 
