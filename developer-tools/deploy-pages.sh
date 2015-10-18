@@ -6,7 +6,8 @@ if [ "$TRAVIS_REPO_SLUG" == "kteza1/switch-case" ] && [ "$TRAVIS_PULL_REQUEST" =
   # echo $HOME
   echo -e "Publishing docs to github pages...\n"
 
-  mkdir -p $HOME/doc-latest 
+  mkdir -p $HOME/doc-latest
+  mkdir -p $HOME/doc-latest/doxygen
   cp -R $TRAVIS_BUILD_DIR/documentation/site/* $HOME/doc-latest
   cp -R $TRAVIS_BUILD_DIR/doxygen/html/* $HOME/doc-latest/doxygen
 
