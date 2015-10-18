@@ -99,7 +99,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <a href="mqtt_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#include &lt;app.h&gt;</span>
 <a name="l00002"></a>00002 
-<a name="l00008"></a>00008 MqttClient xMqtt(MQTT_BROKER, MQTT_PORT, <a class="code" href="application_8cpp.html#ae75a02683f676f314ebeff288cbea586" title="Callback when there is a message on any of the subscription.">mqtt_onMessageReceive</a>);
+<a name="l00008"></a>00008 MqttClient xMqtt(MQTT_BROKER, MQTT_PORT, <a class="code" href="mqtt_8cpp.html#aeb76d239300a0a4f42378157682fdf8c" title="Callback when there is a message on any of the subscription.">mqtt_onMessageReceive</a>);
 <a name="l00009"></a>00009 Timer mqttTimer;
 <a name="l00010"></a>00010 
 <a name="l00011"></a>00011 <span class="comment">// Publish our message</span>
@@ -124,7 +124,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00036"></a>00036 <span class="comment"> * mosquitto_pub -t &quot;main/status/hello&quot; -m &quot;{\&quot;ctrl-req\&quot;:{\&quot;ON\&quot;: $((2#00000001)), \&quot;OFF\&quot;: $((2#00000110))}}&quot; --&gt; Switch ON device 1 and Switch OFF device 2 and 3</span>
 <a name="l00037"></a>00037 <span class="comment"> *</span>
 <a name="l00038"></a>00038 <span class="comment"> */</span>
-<a name="l00050"></a><a class="code" href="mqtt_8cpp.html#ae75a02683f676f314ebeff288cbea586">00050</a>  <span class="keywordtype">void</span> <a class="code" href="application_8cpp.html#ae75a02683f676f314ebeff288cbea586" title="Callback when there is a message on any of the subscription.">mqtt_onMessageReceive</a>(String topic, String message)
+<a name="l00050"></a><a class="code" href="mqtt_8cpp.html#aeb76d239300a0a4f42378157682fdf8c">00050</a>  <span class="keywordtype">void</span> <a class="code" href="mqtt_8cpp.html#aeb76d239300a0a4f42378157682fdf8c" title="Callback when there is a message on any of the subscription.">mqtt_onMessageReceive</a>(String topic, String messagemosquitto_pub -h <span class="stringliteral">&quot;test.mosquitto.org&quot;</span> -t <span class="stringliteral">&quot;switch-case/ota-req&quot;</span> -m <span class="stringliteral">&quot;begging you to update&quot;</span>)
 <a name="l00051"></a>00051  {
 <a name="l00052"></a>00052     PRINTF_INFO(<span class="stringliteral">&quot;@@@ Topic = %s, Message = %s @@@\n&quot;</span>, topic.c_str(), message.c_str());
 <a name="l00053"></a>00053 
@@ -135,7 +135,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00058"></a>00058         <a class="code" href="mqtt_8cpp.html#a39986d2e8cef60b7a92e75076186c278" title="Plublishes.">mqtt_publishMessage</a>(CONTROL_REPLY_TOPIC, <span class="stringliteral">&quot;control-reply: &quot;</span> + message);
 <a name="l00059"></a>00059 
 <a name="l00060"></a>00060     }
-<a name="l00061"></a>00061     <span class="keywordflow">else</span> <span class="keywordflow">if</span>(topic == OTA_UPDATE_TOPIC){
+<a name="l00061"></a>00061     <span class="keywordflow">else</span> <span class="keywordflow">if</span>(topic == OTA_REQUEST_TOPIC){
 <a name="l00062"></a>00062         PRINTF_INFO(<span class="stringliteral">&quot;RECIVED REQUEST ON OTA UPDATE TOPIC\n&quot;</span>);
 <a name="l00063"></a>00063         <a class="code" href="system__info_8cpp.html#aad560d9fc836d6d5f7ddc29067820280" title="Gets your current system information.">system_showInfo</a>();
 <a name="l00064"></a>00064         ota_update();
