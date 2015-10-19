@@ -120,14 +120,14 @@ $(document).ready(function(){initNavTree('mqtt_8cpp.html','');});
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:acdbcb048dc25e61521120e91f38be8f4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acdbcb048dc25e61521120e91f38be8f4"></a>
-MqttClient&#160;</td><td class="memItemRight" valign="bottom"><b>xMqtt</b> (MQTT_BROKER, MQTT_PORT, <a class="el" href="mqtt_8cpp.html#aeb76d239300a0a4f42378157682fdf8c">mqtt_onMessageReceive</a>)</td></tr>
+MqttClient&#160;</td><td class="memItemRight" valign="bottom"><b>xMqtt</b> (MQTT_BROKER, MQTT_PORT, <a class="el" href="mqtt_8cpp.html#ae75a02683f676f314ebeff288cbea586">mqtt_onMessageReceive</a>)</td></tr>
 <tr class="separator:acdbcb048dc25e61521120e91f38be8f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39986d2e8cef60b7a92e75076186c278"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mqtt_8cpp.html#a39986d2e8cef60b7a92e75076186c278">mqtt_publishMessage</a> (String topic, String message)</td></tr>
 <tr class="memdesc:a39986d2e8cef60b7a92e75076186c278"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plublishes.  <a href="#a39986d2e8cef60b7a92e75076186c278">More...</a><br /></td></tr>
 <tr class="separator:a39986d2e8cef60b7a92e75076186c278"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb76d239300a0a4f42378157682fdf8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mqtt_8cpp.html#aeb76d239300a0a4f42378157682fdf8c">mqtt_onMessageReceive</a> (String topic, String messagemosquitto_pub-h&quot;test.mosquitto.org&quot;-t&quot;switch-case/ota-req&quot;-m&quot;begging you to update&quot;)</td></tr>
-<tr class="memdesc:aeb76d239300a0a4f42378157682fdf8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback when there is a message on any of the subscription.  <a href="#aeb76d239300a0a4f42378157682fdf8c">More...</a><br /></td></tr>
-<tr class="separator:aeb76d239300a0a4f42378157682fdf8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae75a02683f676f314ebeff288cbea586"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mqtt_8cpp.html#ae75a02683f676f314ebeff288cbea586">mqtt_onMessageReceive</a> (String topic, String message)</td></tr>
+<tr class="memdesc:ae75a02683f676f314ebeff288cbea586"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback when there is a message on any of the subscription.  <a href="#ae75a02683f676f314ebeff288cbea586">More...</a><br /></td></tr>
+<tr class="separator:ae75a02683f676f314ebeff288cbea586"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af494f2c9b165a662d639481063d7bf00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mqtt_8cpp.html#af494f2c9b165a662d639481063d7bf00">mqtt_startClient</a> ()</td></tr>
 <tr class="memdesc:af494f2c9b165a662d639481063d7bf00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start mqtt client and subscribe to all necessary topics.  <a href="#af494f2c9b165a662d639481063d7bf00">More...</a><br /></td></tr>
 <tr class="separator:af494f2c9b165a662d639481063d7bf00"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,7 +143,7 @@ Timer&#160;</td><td class="memItemRight" valign="bottom"><b>mqttTimer</b></td></
 
 <p>Definition in file <a class="el" href="mqtt_8cpp_source.html">mqtt.cpp</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="aeb76d239300a0a4f42378157682fdf8c"></a>
+<a class="anchor" id="ae75a02683f676f314ebeff288cbea586"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -156,8 +156,8 @@ Timer&#160;</td><td class="memItemRight" valign="bottom"><b>mqttTimer</b></td></
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">String messagemosquitto_pub-h&quot;test.mosquitto.org&quot;-t&quot;switch-case/ota-req&quot;-m&quot;begging you to update&quot;&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>message</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -238,7 +238,7 @@ Timer&#160;</td><td class="memItemRight" valign="bottom"><b>mqttTimer</b></td></
 <p>Start mqtt client and subscribe to all necessary topics. </p>
 <p>Keeps trying to connect to mqtt broker in case of failure </p>
 
-<p>Definition at line <a class="el" href="mqtt_8cpp_source.html#l00078">78</a> of file <a class="el" href="mqtt_8cpp_source.html">mqtt.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mqtt_8cpp_source.html#l00079">79</a> of file <a class="el" href="mqtt_8cpp_source.html">mqtt.cpp</a>.</p>
 
 </div>
 </div>

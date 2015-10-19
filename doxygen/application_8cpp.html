@@ -134,8 +134,8 @@ Functions</h2></td></tr>
 <tr class="memitem:af494f2c9b165a662d639481063d7bf00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8cpp.html#af494f2c9b165a662d639481063d7bf00">mqtt_startClient</a> ()</td></tr>
 <tr class="memdesc:af494f2c9b165a662d639481063d7bf00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start mqtt client and subscribe to all necessary topics.  <a href="#af494f2c9b165a662d639481063d7bf00">More...</a><br /></td></tr>
 <tr class="separator:af494f2c9b165a662d639481063d7bf00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae75a02683f676f314ebeff288cbea586"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae75a02683f676f314ebeff288cbea586"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>mqtt_onMessageReceive</b> (String topic, String message)</td></tr>
+<tr class="memitem:ae75a02683f676f314ebeff288cbea586"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8cpp.html#ae75a02683f676f314ebeff288cbea586">mqtt_onMessageReceive</a> (String topic, String message)</td></tr>
+<tr class="memdesc:ae75a02683f676f314ebeff288cbea586"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback when there is a message on any of the subscription.  <a href="#ae75a02683f676f314ebeff288cbea586">More...</a><br /></td></tr>
 <tr class="separator:ae75a02683f676f314ebeff288cbea586"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a260ae5e80c71afde7f3b6590937852e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8cpp.html#a260ae5e80c71afde7f3b6590937852e6">wifi_onConnectionSuccess</a> ()</td></tr>
 <tr class="memdesc:a260ae5e80c71afde7f3b6590937852e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback when wifi connection is successful.  <a href="#a260ae5e80c71afde7f3b6590937852e6">More...</a><br /></td></tr>
@@ -165,6 +165,48 @@ Timer&#160;</td><td class="memItemRight" valign="bottom"><b>procTimer</b></td></
 
 <p>Definition in file <a class="el" href="application_8cpp_source.html">application.cpp</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="ae75a02683f676f314ebeff288cbea586"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mqtt_onMessageReceive </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>topic</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>message</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Callback when there is a message on any of the subscription. </p>
+<p>All the processing of messages will be done here</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">topic</td><td>Topic on which message is received </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">message</td><td>Message string</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000001">Test:</a></b></dt><dd><p class="startdd">DISCOVERY &mdash;&gt; mosquitto_sub -t "switch-case/find-rep" + mosquitto_pub -t "switch-case/find-req" -m "ping" </p>
+<p>CONTROL &mdash;&gt; mosquitto_sub -t "switch-case/$MAC_ADDR/ctrl-rep" + mosquitto_pub -t "switch-case/$MAC_ADDR/ctrl-req" -m "{Your Json}" </p>
+<p class="enddd">OTA &mdash;&gt; mosquitto_sub -h "test.mosquitto.org" -t "switch-case/ota-rep" + mosquitto_pub -h "test.mosquitto.org" -t "switch-case/ota-req" -m "begging you to update" </p>
+</dd></dl>
+
+<p>Definition at line <a class="el" href="mqtt_8cpp_source.html#l00050">50</a> of file <a class="el" href="mqtt_8cpp_source.html">mqtt.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="af494f2c9b165a662d639481063d7bf00"></a>
 <div class="memitem">
 <div class="memproto">
@@ -181,7 +223,7 @@ Timer&#160;</td><td class="memItemRight" valign="bottom"><b>procTimer</b></td></
 <p>Start mqtt client and subscribe to all necessary topics. </p>
 <p>Keeps trying to connect to mqtt broker in case of failure </p>
 
-<p>Definition at line <a class="el" href="mqtt_8cpp_source.html#l00078">78</a> of file <a class="el" href="mqtt_8cpp_source.html">mqtt.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mqtt_8cpp_source.html#l00079">79</a> of file <a class="el" href="mqtt_8cpp_source.html">mqtt.cpp</a>.</p>
 
 </div>
 </div>

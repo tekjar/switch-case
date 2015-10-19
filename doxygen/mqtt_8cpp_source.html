@@ -109,7 +109,7 @@ $(document).ready(function(){initNavTree('mqtt_8cpp_source.html','');});
 <div class="contents">
 <a href="mqtt_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;app.h&gt;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;MqttClient xMqtt(MQTT_BROKER, MQTT_PORT, <a class="code" href="mqtt_8cpp.html#aeb76d239300a0a4f42378157682fdf8c">mqtt_onMessageReceive</a>);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;MqttClient xMqtt(MQTT_BROKER, MQTT_PORT, <a class="code" href="mqtt_8cpp.html#ae75a02683f676f314ebeff288cbea586">mqtt_onMessageReceive</a>);</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;Timer mqttTimer;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// Publish our message</span></div>
@@ -120,7 +120,7 @@ $(document).ready(function(){initNavTree('mqtt_8cpp_source.html','');});
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">if</span> (xMqtt.getConnectionState() != eTCS_Connected)</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="mqtt_8cpp.html#af494f2c9b165a662d639481063d7bf00">mqtt_startClient</a>(); <span class="comment">// Auto reconnect</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    Serial.println(<span class="stringliteral">&quot;@@@ Let&#39;s publish message now! @@@&quot;</span>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    PRINTF_INFO(<span class="stringliteral">&quot;@@@ Let&#39;s publish message now! @@@\n&quot;</span>);</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    xMqtt.publish(topic, message); <span class="comment">// or publishWithQoS</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
@@ -134,7 +134,7 @@ $(document).ready(function(){initNavTree('mqtt_8cpp_source.html','');});
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"> * mosquitto_pub -t &quot;main/status/hello&quot; -m &quot;{\&quot;ctrl-req\&quot;:{\&quot;ON\&quot;: $((2#00000001)), \&quot;OFF\&quot;: $((2#00000110))}}&quot; --&gt; Switch ON device 1 and Switch OFF device 2 and 3</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="mqtt_8cpp.html#aeb76d239300a0a4f42378157682fdf8c">   50</a></span>&#160; <span class="keywordtype">void</span> <a class="code" href="mqtt_8cpp.html#aeb76d239300a0a4f42378157682fdf8c">mqtt_onMessageReceive</a>(String topic, String messagemosquitto_pub -h <span class="stringliteral">&quot;test.mosquitto.org&quot;</span> -t <span class="stringliteral">&quot;switch-case/ota-req&quot;</span> -m <span class="stringliteral">&quot;begging you to update&quot;</span>)</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="mqtt_8cpp.html#ae75a02683f676f314ebeff288cbea586">   50</a></span>&#160; <span class="keywordtype">void</span> <a class="code" href="mqtt_8cpp.html#ae75a02683f676f314ebeff288cbea586">mqtt_onMessageReceive</a>(String topic, String message)</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; {</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    PRINTF_INFO(<span class="stringliteral">&quot;@@@ Topic = %s, Message = %s @@@\n&quot;</span>, topic.c_str(), message.c_str());</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
@@ -148,42 +148,43 @@ $(document).ready(function(){initNavTree('mqtt_8cpp_source.html','');});
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(topic == OTA_REQUEST_TOPIC){</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        PRINTF_INFO(<span class="stringliteral">&quot;RECIVED REQUEST ON OTA UPDATE TOPIC\n&quot;</span>);</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <a class="code" href="system__info_8cpp.html#aad560d9fc836d6d5f7ddc29067820280">system_showInfo</a>();</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        ota_update();</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="comment">//TODO: Send whether OTA is a success or failure</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <a class="code" href="mqtt_8cpp.html#a39986d2e8cef60b7a92e75076186c278">mqtt_publishMessage</a>(OTA_REPLY_TOPIC, <span class="stringliteral">&quot;ota-reply: done&quot;</span>);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        PRINTF_ERR(<span class="stringliteral">&quot;@@@ Invalid topic @@@\n&quot;</span>);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    }</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="mqtt_8cpp.html#af494f2c9b165a662d639481063d7bf00">   78</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="mqtt_8cpp.html#af494f2c9b165a662d639481063d7bf00">mqtt_startClient</a>()</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    PRINTF_INFO(<span class="stringliteral">&quot;@@@ Trying MQTT Connect @@@\n&quot;</span>);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">if</span>(xMqtt.connect(<span class="stringliteral">&quot;MOSQUITTO&quot;</span>) == <span class="keyword">true</span>){</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        mqttTimer.stop();</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="comment">/* Subscribe to all necessary topics */</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        xMqtt.subscribe(DISCOVERY_REQUEST_TOPIC);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        xMqtt.subscribe(CONTROL_REQUEST_TOPIC);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        xMqtt.subscribe(OTA_REQUEST_TOPIC);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        PRINTF_INFO(<span class="stringliteral">&quot;========= MQTT Connected, Subscribed =========\n&quot;</span>);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        PRINTF_INFO(<span class="stringliteral">&quot;My ID = %s\n&quot;</span>, WifiStation.getMAC().c_str());</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        PRINTF_INFO(<span class="stringliteral">&quot;My IP = %s\n&quot;</span>, WifiStation.getIP().toString().c_str());</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        PRINTF_INFO(<span class="stringliteral">&quot;==============================================\r\n&quot;</span>);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    }</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        PRINTF_ERR(<span class="stringliteral">&quot;Failed to connect to broker. Retrying in 10 secs....\n&quot;</span>);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        mqttTimer.initializeMs(10 * 1000, <a class="code" href="mqtt_8cpp.html#af494f2c9b165a662d639481063d7bf00">mqtt_startClient</a>).start(); <span class="comment">// every 10 seconds</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <a class="code" href="mqtt_8cpp.html#a39986d2e8cef60b7a92e75076186c278">mqtt_publishMessage</a>(OTA_REPLY_TOPIC, <span class="stringliteral">&quot;ota-reply: Going for firmware update ...&quot;</span>);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        ota_update();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="comment">//TODO: Send whether OTA is a success or failure</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <a class="code" href="mqtt_8cpp.html#a39986d2e8cef60b7a92e75076186c278">mqtt_publishMessage</a>(OTA_REPLY_TOPIC, <span class="stringliteral">&quot;ota-reply: Firmware update finished ...&quot;</span>);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    }</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        PRINTF_ERR(<span class="stringliteral">&quot;@@@ Invalid topic @@@\n&quot;</span>);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;}</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="mqtt_8cpp.html#af494f2c9b165a662d639481063d7bf00">   79</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="mqtt_8cpp.html#af494f2c9b165a662d639481063d7bf00">mqtt_startClient</a>()</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;{</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    PRINTF_INFO(<span class="stringliteral">&quot;@@@ Trying MQTT Connect @@@\n&quot;</span>);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordflow">if</span>(xMqtt.connect(<span class="stringliteral">&quot;MOSQUITTO&quot;</span>) == <span class="keyword">true</span>){</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        mqttTimer.stop();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="comment">/* Subscribe to all necessary topics */</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        xMqtt.subscribe(DISCOVERY_REQUEST_TOPIC);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        xMqtt.subscribe(CONTROL_REQUEST_TOPIC);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        xMqtt.subscribe(OTA_REQUEST_TOPIC);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        PRINTF_INFO(<span class="stringliteral">&quot;========= MQTT Connected, Subscribed =========\n&quot;</span>);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        PRINTF_INFO(<span class="stringliteral">&quot;My ID = %s\n&quot;</span>, WifiStation.getMAC().c_str());</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        PRINTF_INFO(<span class="stringliteral">&quot;My IP = %s\n&quot;</span>, WifiStation.getIP().toString().c_str());</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        PRINTF_INFO(<span class="stringliteral">&quot;==============================================\r\n&quot;</span>);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        PRINTF_ERR(<span class="stringliteral">&quot;Failed to connect to broker. Retrying in 10 secs....\n&quot;</span>);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        mqttTimer.initializeMs(10 * 1000, <a class="code" href="mqtt_8cpp.html#af494f2c9b165a662d639481063d7bf00">mqtt_startClient</a>).start(); <span class="comment">// every 10 seconds</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    }</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}</div>
 <div class="ttc" id="mqtt_8cpp_html_a39986d2e8cef60b7a92e75076186c278"><div class="ttname"><a href="mqtt_8cpp.html#a39986d2e8cef60b7a92e75076186c278">mqtt_publishMessage</a></div><div class="ttdeci">void mqtt_publishMessage(String topic, String message)</div><div class="ttdoc">Plublishes. </div><div class="ttdef"><b>Definition:</b> <a href="mqtt_8cpp_source.html#l00020">mqtt.cpp:20</a></div></div>
-<div class="ttc" id="mqtt_8cpp_html_aeb76d239300a0a4f42378157682fdf8c"><div class="ttname"><a href="mqtt_8cpp.html#aeb76d239300a0a4f42378157682fdf8c">mqtt_onMessageReceive</a></div><div class="ttdeci">void mqtt_onMessageReceive(String topic, String messagemosquitto_pub-h&quot;test.mosquitto.org&quot;-t&quot;switch-case/ota-req&quot;-m&quot;begging you to update&quot;)</div><div class="ttdoc">Callback when there is a message on any of the subscription. </div><div class="ttdef"><b>Definition:</b> <a href="mqtt_8cpp_source.html#l00050">mqtt.cpp:50</a></div></div>
-<div class="ttc" id="mqtt_8cpp_html_af494f2c9b165a662d639481063d7bf00"><div class="ttname"><a href="mqtt_8cpp.html#af494f2c9b165a662d639481063d7bf00">mqtt_startClient</a></div><div class="ttdeci">void mqtt_startClient()</div><div class="ttdoc">Start mqtt client and subscribe to all necessary topics. </div><div class="ttdef"><b>Definition:</b> <a href="mqtt_8cpp_source.html#l00078">mqtt.cpp:78</a></div></div>
+<div class="ttc" id="mqtt_8cpp_html_ae75a02683f676f314ebeff288cbea586"><div class="ttname"><a href="mqtt_8cpp.html#ae75a02683f676f314ebeff288cbea586">mqtt_onMessageReceive</a></div><div class="ttdeci">void mqtt_onMessageReceive(String topic, String message)</div><div class="ttdoc">Callback when there is a message on any of the subscription. </div><div class="ttdef"><b>Definition:</b> <a href="mqtt_8cpp_source.html#l00050">mqtt.cpp:50</a></div></div>
+<div class="ttc" id="mqtt_8cpp_html_af494f2c9b165a662d639481063d7bf00"><div class="ttname"><a href="mqtt_8cpp.html#af494f2c9b165a662d639481063d7bf00">mqtt_startClient</a></div><div class="ttdeci">void mqtt_startClient()</div><div class="ttdoc">Start mqtt client and subscribe to all necessary topics. </div><div class="ttdef"><b>Definition:</b> <a href="mqtt_8cpp_source.html#l00079">mqtt.cpp:79</a></div></div>
 <div class="ttc" id="system__info_8cpp_html_aad560d9fc836d6d5f7ddc29067820280"><div class="ttname"><a href="system__info_8cpp.html#aad560d9fc836d6d5f7ddc29067820280">system_showInfo</a></div><div class="ttdeci">void system_showInfo()</div><div class="ttdoc">Gets your current system information. </div><div class="ttdef"><b>Definition:</b> <a href="system__info_8cpp_source.html#l00012">system_info.cpp:12</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
